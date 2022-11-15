@@ -1,0 +1,17 @@
+node_modules
+dist
+results
+.nyc_output
+*.tsbuildinfo
+.env
+package-lock.json
+.vscode
+.sessions
+*.log
+.tsbuildinfo
+coverage
+.env.test
+screenshots
+.idea
+.eslintcache
+.ultra.cache.json

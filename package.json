@@ -1,0 +1,28 @@
+{
+  "name": "yggdrasil",
+  "description": "",
+  "version": "1.0.0",
+  "license": "",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "commit": "commit",
+    "clean": "ultra -r clean",
+    "typecheck": "ultra -r typecheck",
+    "build": "ultra -r build",
+    "lint": "ultra -r lint",
+    "lint:fix": "ultra -r --fix",
+    "test": "yarn jest --clearCache && doppler setup -p yggdrasil -c local_test && ultra -r test"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.17",
+    "@swc/helpers": "^0.4.12",
+    "@types/node": "^18.11.9",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.8.4",
+    "ultra-runner": "^3.10.5"
+  }
+}

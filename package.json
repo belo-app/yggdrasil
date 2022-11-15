@@ -12,13 +12,13 @@
     "prepare": "husky install",
     "clean": "rm -rf dist",
     "typecheck": "tsc -p tsconfig.build.json",
-    "lint": "eslint --cache --ext .js,.ts ./src"
+    "lint": "eslint --cache --ext .js,.ts ."
   },
   "dependencies": {
     "memoizee": "^0.4.15"
   },
   "devDependencies": {
-    "jormungand": "git+ssh://git@github.com:belo-app/jormungand.git#0.2.1",
+    "jormungand": "git+ssh://git@github.com:belo-app/jormungand.git#0.2.2",
     "@types/memoizee": "^0.4.8"
   },
   "release-it": {

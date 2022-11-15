@@ -1,23 +1,15 @@
 {
   "name": "yggdrasil",
-  "description": "belo shared resources",
-  "version": "0.1.0",
+  "description": "belo standard library",
+  "version": "0.1.1",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "eslint",
-    "commit"
-  ],
+  "bin": {
+    "commit": "./commit/cli.js"
+  },
   "scripts": {
-    "commit": "commit",
-    "release": "release-it",
-    "clean": "ultra -r clean",
-    "typecheck": "ultra -r typecheck",
-    "build": "ultra -r build",
-    "lint": "ultra -r lint",
-    "lint:fix": "ultra -r --fix",
-    "test": "yarn jest --clearCache && doppler setup -p yggdrasil -c local_test && ultra -r test"
+    "commit": "./commit/cli.js",
+    "release": "release-it"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
@@ -31,7 +23,21 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.0",
     "typescript": "^4.8.4",
-    "ultra-runner": "^3.10.5"
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "3.3.0",
+    "@babel/core": "^7.20.2",
+    "@babel/eslint-parser": "^7.19.1",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^27.1.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-sonarjs": "^0.16.0",
+    "eslint-plugin-unicorn": "^44.0.2",
+    "jest": "^29.3.1",
+    "prettier": "^2.7.1"
   },
   "release-it": {
     "git": {
@@ -40,7 +46,10 @@
     "github": {
       "release": true
     },
-    "npm": false,
+    "npm": {
+      "skipChecks": true,
+      "publish": false
+    },
     "plugins": {
       "@release-it/conventional-changelog": {
         "preset": "angular",

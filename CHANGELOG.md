@@ -1,5 +1,7 @@
 
 
+## [0.1.2](https://github.com/belo-app/yggdrasil/compare/0.1.1...0.1.2) (2022-11-15)
+
 ## [0.1.1](https://github.com/belo-app/yggdrasil/compare/0.1.0...0.1.1) (2022-11-15)
 
 # 0.1.0 (2022-11-15)

@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["./development/eslint-config/recommended"],
+  extends: ["./node_modules/jormungand/src/eslint-config/recommended"],
 };

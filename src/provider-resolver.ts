@@ -35,7 +35,6 @@ export class ProviderResolver<
 
       for (const [key, clazz] of Object.entries(this.providerClassMap())) {
         if (!clazz) {
-          console.log({ key, clazz });
           continue;
         }
 

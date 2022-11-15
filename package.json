@@ -4,25 +4,20 @@
   "version": "0.1.4",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "development",
-    "tools"
-  ],
-  "bin": {
-    "commit": "development/commit/cli.js"
-  },
   "scripts": {
-    "commit": "development/commit/cli.js",
+    "commit": "commit",
     "release": "release-it",
     "prepare": "husky install",
-    "clean": "ultra -r clean",
-    "typecheck": "ultra -r typecheck",
-    "build": "ultra -r compile",
-    "lint": "ultra -r lint"
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.build.json",
+    "lint": "eslint --cache --ext .js,.ts ./src"
+  },
+  "dependencies": {
+    "memoizee": "^0.4.15"
   },
   "devDependencies": {
-    "ultra-runner": "^3.10.5"
+    "jormungand": "git+ssh://git@github.com:belo-app/jormungand.git#0.2.0",
+    "@types/memoizee": "^0.4.8"
   },
   "release-it": {
     "git": {

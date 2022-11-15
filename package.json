@@ -1,7 +1,7 @@
 {
   "name": "yggdrasil",
   "description": "belo shared resources",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
   "private": true,

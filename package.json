@@ -17,9 +17,12 @@
     "test": "yarn jest --clearCache && doppler setup -p yggdrasil -c local_test && ultra -r test"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@swc/core": "^1.3.17",
     "@swc/helpers": "^0.4.12",
     "@types/node": "^18.11.9",
+    "husky": "^8.0.2",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.0",
     "typescript": "^4.8.4",

@@ -4,6 +4,8 @@
   "version": "0.1.5",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
+  "main": "index.ts",
+  "types": "index.ts",
   "scripts": {
     "commit": "commit",
     "release": "release-it",

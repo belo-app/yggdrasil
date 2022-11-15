@@ -1,14 +1,16 @@
 {
   "name": "yggdrasil",
-  "description": "",
-  "version": "1.0.0",
-  "license": "",
+  "description": "belo shared resources",
+  "version": "0.1.0",
+  "author": "belo tech team <tech@belo.app>",
+  "license": "MIT",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "commit": "commit",
+    "release": "release-it",
     "clean": "ultra -r clean",
     "typecheck": "ultra -r typecheck",
     "build": "ultra -r build",
@@ -19,13 +21,35 @@
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
+    "@release-it-plugins/workspaces": "^3.2.0",
+    "@release-it/conventional-changelog": "^5.1.1",
     "@swc/core": "^1.3.17",
     "@swc/helpers": "^0.4.12",
     "@types/node": "^18.11.9",
     "husky": "^8.0.2",
+    "release-it": "^15.5.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.0",
     "typescript": "^4.8.4",
     "ultra-runner": "^3.10.5"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": false,
+    "plugins": {
+      "@release-it-plugins/workspaces": {
+        "skipChecks": true,
+        "publish": false
+      },
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
   }
 }

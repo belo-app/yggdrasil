@@ -1,4 +1,12 @@
 
+
+## [0.1.5](https://github.com/belo-app/yggdrasil/compare/0.1.4...0.1.5) (2022-11-15)
+
+
+### Bug Fixes
+
+* use correct dev tools version ([5eec8ca](https://github.com/belo-app/yggdrasil/commit/5eec8ca5fdbcdfe3784d3c9a316cf947f3da6226))
+
 ## [0.1.4](https://github.com/belo-app/yggdrasil/compare/0.1.3...0.1.4) (2022-11-15)
 
 ## [0.1.3](https://github.com/belo-app/yggdrasil/compare/0.1.2...0.1.3) (2022-11-15)

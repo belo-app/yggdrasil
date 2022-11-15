@@ -1,5 +1,12 @@
 
 
+## [0.1.3](https://github.com/belo-app/yggdrasil/compare/0.1.2...0.1.3) (2022-11-15)
+
+
+### Bug Fixes
+
+* fix package.json ([7c966ac](https://github.com/belo-app/yggdrasil/commit/7c966ac4874645c49ce6404ac333bfbd437f6c52))
+
 ## [0.1.2](https://github.com/belo-app/yggdrasil/compare/0.1.1...0.1.2) (2022-11-15)
 
 ## [0.1.1](https://github.com/belo-app/yggdrasil/compare/0.1.0...0.1.1) (2022-11-15)

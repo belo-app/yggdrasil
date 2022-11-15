@@ -4221,9 +4221,9 @@ jest@^29.3.1:
     import-local "^3.0.2"
     jest-cli "^29.3.1"
 
-"jormungand@git+ssh://git@github.com:belo-app/jormungand.git#0.2.0":
-  version "0.2.0"
-  resolved "git+ssh://git@github.com:belo-app/jormungand.git#b23c761c0e65f0406445eae99817b4e761f52fc0"
+"jormungand@git+ssh://git@github.com:belo-app/jormungand.git#0.2.1":
+  version "0.2.1"
+  resolved "git+ssh://git@github.com:belo-app/jormungand.git#4cd8c5406bdd22e41cb2850d98bbf62828bfff54"
   dependencies:
     "@babel/core" "^7.20.2"
     "@babel/eslint-parser" "^7.19.1"

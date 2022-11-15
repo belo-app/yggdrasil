@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["@yggdrasil/eslint-config-belo/recommended"],
+  extends: ["./eslint/recommended"],
 };

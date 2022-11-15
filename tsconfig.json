@@ -3,16 +3,12 @@
   "display": "yggdrasil",
   "compilerOptions": {
     "incremental": true,
-    "target": "es2022",
+    "target": "es2021",
     "lib": ["esnext"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@yggdrasil/*": ["./packages/*"]
-    },
     "resolveJsonModule": true,
     "noEmit": true,
     "isolatedModules": true,

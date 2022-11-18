@@ -9,7 +9,7 @@
   "scripts": {
     "commit": "commit",
     "release": "release-it",
-    "prepare": "husky install",
+    "husky": "husky install",
     "clean": "rm -rf dist",
     "typecheck": "tsc -p tsconfig.build.json",
     "lint": "eslint --cache --ext .js,.ts ."
@@ -18,7 +18,7 @@
     "memoizee": "^0.4.15"
   },
   "devDependencies": {
-    "jormungand": "git+ssh://git@github.com:belo-app/jormungand.git#0.2.2",
+    "jormungand": "https://github.com/belo-app/jormungand.git#0.2.4",
     "@types/memoizee": "^0.4.8"
   },
   "release-it": {

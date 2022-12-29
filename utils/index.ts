@@ -57,7 +57,7 @@ export * from "./provider-resolver";
 export * from "./qr";
 export * from "./queue";
 export * from "./random";
-export * from "./redis-client";
+/* export * from "./redis-client"; */
 export * from "./reward";
 export * from "./s3";
 export * from "./sftp";

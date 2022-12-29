@@ -1,8 +1,7 @@
 import EventEmitter from "events";
 import { cloneDeep, pickBy } from "lodash";
 import Redact from "redact-secrets";
-
-import { environment } from "../../utils copy/src/environment";
+import { environment } from "../environment";
 
 export type LoggerFunction = (
   message: string,

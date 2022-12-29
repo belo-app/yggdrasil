@@ -1,8 +1,8 @@
 import { Handler, Request, Response } from "express";
 import { omit, pick } from "lodash";
 
-import { bigQuery } from "../../utils copy/src/bigquery";
-import { grafanaLoki } from "../../utils copy/src/grafana-loki";
+import { bigQuery } from "../bigquery";
+import { grafanaLoki } from "../grafana-loki";
 import { pinoLogger } from "./pino";
 
 export const logger = pinoLogger;

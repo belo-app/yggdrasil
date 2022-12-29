@@ -67,14 +67,18 @@
     "fastify-multer": "^2.0.3",
     "fastify-plugin": "^4.3.0",
     "fastify-raw-body": "^4.1.3",
-    "openapi-snippet": "^0.14.0"
+    "openapi-snippet": "^0.14.0",
+    "mongoose": "^6.6.5",
+    "express": "^4.18.2",
+    "google-libphonenumber": "^3.2.31"
   },
   "devDependencies": {
     "jormungand": "https://github.com/belo-app/jormungand.git#0.2.4",
     "@types/memoizee": "^0.4.8",
     "@types/cron": "^2.0.0",
     "@types/papaparse": "^5.3.5",
-    "@types/ioredis": "^4.28.10"
+    "@types/ioredis": "^4.28.10",
+    "@types/google-libphonenumber": "^7.4.23"
   },
   "release-it": {
     "git": {

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import { environment } from "./environment";
-import { logger } from "../../utils/logger";
+import { logger } from "./logger";
 import { exit } from "./process";
 
 mongoose.connection.on("connecting", () => {

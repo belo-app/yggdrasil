@@ -3,8 +3,8 @@ import { omit } from "lodash";
 import pino from "pino";
 import pretty from "pino-pretty";
 
-import { batchQueue } from "../../utils copy/src/batch-queue";
-import { environment } from "../../utils copy/src/environment";
+import { batchQueue } from "../batch-queue";
+import { environment } from "../environment";
 import { Logger } from "./logger";
 
 export interface Log {

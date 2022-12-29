@@ -3,7 +3,7 @@ import { CacheStorage } from "./p-memoize";
 import { RedisClient } from "./redis-client";
 
 export class Cache<Value = any> implements CacheStorage<string, Value> {
-  private client = new RedisClient(environment.REDIS_CACHE_URL);
+  private client = new RedisClient("mock");
   private prefix;
 
   constructor(prefix = "") {

@@ -75,4 +75,4 @@ export class RedisClient {
   }
 }
 
-export const redisClient = new RedisClient(environment.REDIS_URL);
+export const redisClient = new RedisClient("mock");

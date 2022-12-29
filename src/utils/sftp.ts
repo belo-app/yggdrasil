@@ -22,7 +22,7 @@ export class Sftp {
     await this.connect();
 
     const files = await this.client
-      // @ts-expect-error: Breaking change in version 9.x
+      /*    // @ts-expect-error: Breaking change in version 9.x */
       .list(path, (item: FileInfo) => {
         if (pattern === undefined) {
           return true;

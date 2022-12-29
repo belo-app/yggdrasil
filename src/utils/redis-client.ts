@@ -1,6 +1,6 @@
 import * as redis from "redis";
 
-import { environment } from "./environment";
+/* import { environment } from "./environment"; */
 
 export class RedisClient {
   private url: string;

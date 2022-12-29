@@ -10,7 +10,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmit": true,
+    "noEmit": false,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -31,11 +31,14 @@
     "noUncheckedIndexedAccess": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "./lib"
   },
   "ts-node": {
     "transpileOnly": true,
     "require": ["tsconfig-paths/register"],
     "swc": true
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

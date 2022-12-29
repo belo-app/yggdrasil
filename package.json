@@ -4,11 +4,12 @@
   "version": "0.1.9",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
-  "main": "index.ts",
-  "types": "index.ts",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "scripts": {
     "commit": "commit",
     "release": "release-it",
+    "build": "tsc",
     "husky": "husky install",
     "clean": "rm -rf dist",
     "typecheck": "tsc -p tsconfig.build.json",
@@ -97,5 +98,8 @@
         "infile": "CHANGELOG.md"
       }
     }
-  }
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }

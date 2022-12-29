@@ -2,15 +2,15 @@
 import cors from "@fastify/cors";
 import formBody from "@fastify/formbody";
 import helmet from "@fastify/helmet";
-import rateLimit from "@fastify/rate-limit";
+/* import rateLimit from "@fastify/rate-limit"; */
 import multer from "fastify-multer";
 import { Options } from "fastify-multer/lib/interfaces";
 import rawBody from "fastify-raw-body";
-import Redis from "ioredis";
 
+/* import Redis from "ioredis"; */
 import { AppInstance } from "../types";
 import beloBoom from "./belo-boom";
-import { rateLimitGlobal, rateLimitTo404 } from "./rate-limit";
+/* import { rateLimitGlobal, rateLimitTo404 } from "./rate-limit"; */
 
 export async function registerPlugins(fastify: AppInstance) {
   /*   if (!environment.LOCAL) {

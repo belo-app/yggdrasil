@@ -9,7 +9,7 @@ export class RedisClient {
 
   constructor(url: string) {
     if (!url) {
-      throw new Error("Can't create redis client without url");
+      throw new Error("Can't create redis client without url´s");
     }
 
     this.url = url;

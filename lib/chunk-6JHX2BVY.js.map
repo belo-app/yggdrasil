@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/utils/numbers.ts"],"names":["Decimal","isZero","value"],"mappings":";;;;;AAAA,SAASA,eAAe;AAEjB,SAASC,OAAOC,OAAkC;AACvD,SAAO,IAAIF,QAAQE,KAAAA,EAAOD,OAAM;AAClC;AAFgBA","sourcesContent":["import { Decimal } from \"decimal.js\";\n\nexport function isZero(value: string | number | Decimal) {\n  return new Decimal(value).isZero();\n}\n"]}

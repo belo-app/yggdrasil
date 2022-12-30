@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/utils/process.ts"],"names":["exit","process"],"mappings":";;;;;AAAO,IAAMA,OAAO,6BAAM;AAExBC,UAAQD,KAAK,CAAA;AACf,GAHoB","sourcesContent":["export const exit = () => {\n  // eslint-disable-next-line unicorn/no-process-exit\n  process.exit(1);\n};\n"]}

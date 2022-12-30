@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/utils/uuid.ts"],"names":["hyperid","uuid","fixedLength","urlSafe"],"mappings":";AAAA,OAAOA,aAAa;AAEb,IAAMC,OAAOD,QAAQ;EAAEE,aAAa;EAAMC,SAAS;AAAK,CAAA","sourcesContent":["import hyperid from \"hyperid\";\n\nexport const uuid = hyperid({ fixedLength: true, urlSafe: true });\n"]}

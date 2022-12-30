@@ -4,7 +4,7 @@
   "version": "0.1.9",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
-  "main": "lib/src/index.js",
+  "main": "lib/index.js",
   "types": "src/index.ts",
   "scripts": {
     "commit": "commit",

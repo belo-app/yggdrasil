@@ -41,7 +41,7 @@ export * from "./http";
 export * from "./image";
 export * from "./influx";
 export * from "./json-schema";
-export * from "./knex";
+/* export * from "./knex"; */
 export * from "./lambda";
 export * from "./lock";
 export * from "./logger";

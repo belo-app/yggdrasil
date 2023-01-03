@@ -1,13 +1,12 @@
-import { environment } from "./environment";
 import { CacheStorage } from "./p-memoize";
 import { RedisClient } from "./redis-client";
 
 export class Cache<Value = any> implements CacheStorage<string, Value> {
-  private client = new RedisClient("mock");
-  private prefix;
+  private client: RedisClient;
 
-  constructor(prefix = "") {
+  constructor(redisUrl: string, private prefix = "") {
     this.prefix = prefix;
+    this.client = new RedisClient(redisUrl);
   }
 
   private getKey(key: string) {

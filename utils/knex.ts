@@ -66,7 +66,7 @@ export const setupDatabase = async (config: Partial<DatabaseConfig> = {}) => {
   await connectToMongo();
 };
 
-setupDatabase();
+/* setupDatabase(); */
 
 if (environment.TEST) {
   knex = new Proxy(

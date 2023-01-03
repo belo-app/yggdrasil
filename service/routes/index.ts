@@ -15,5 +15,4 @@ export function registerRoutes(
 }
 
 export * from "./plugins";
-export * from "./rate-limit";
 export * from "./utils";

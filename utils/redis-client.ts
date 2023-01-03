@@ -1,7 +1,5 @@
 import * as redis from "redis";
 
-import { environment } from "./environment";
-
 export class RedisClient {
   private url: string;
   private client: any;
@@ -9,7 +7,7 @@ export class RedisClient {
 
   constructor(url: string) {
     if (!url) {
-      throw new Error("Can't create redis client without url´s");
+      throw new Error("Can't create redis client without url");
     }
 
     this.url = url;
@@ -74,5 +72,3 @@ export class RedisClient {
     return instance.evalSha(hashScript, data);
   }
 }
-
-export const redisClient = new RedisClient("mock");

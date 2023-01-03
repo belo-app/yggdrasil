@@ -1,18 +1,10 @@
-import Redis from "ioredis";
-import memoize from "memoizee";
+import { Redis } from "ioredis";
 import Redlock from "redlock";
 
-import { environment } from "./environment";
 import { Errors } from "./error";
 import { logger } from "./logger";
 
 export type AsyncFunction<T> = () => Promise<T>;
-
-const getRedis = memoize(() => {
-  return new Redis(environment.REDIS_URL, {
-    enableOfflineQueue: false,
-  });
-});
 
 export class Lock {
   private redlock: Redlock;
@@ -20,14 +12,13 @@ export class Lock {
 
   constructor(
     private key: string | string[],
+    redis: Redis,
     options?: Partial<{
       retryInterval: number;
       retryLimit: number;
       acquireDuration: number;
     }>
   ) {
-    const redis = getRedis();
-
     this.redlock = new Redlock([redis], {
       driftFactor: 0.01,
       retryCount: options?.retryLimit ?? 20,

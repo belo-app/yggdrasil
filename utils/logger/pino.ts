@@ -4,7 +4,10 @@ import pino from "pino";
 import pretty from "pino-pretty";
 
 import { batchQueue } from "../batch-queue";
-import { environment } from "../environment";
+import {
+  environment as environmentVariables,
+  getEnvironment,
+} from "../environment";
 import { Logger } from "./logger";
 
 export interface Log {
@@ -22,7 +25,7 @@ export interface Log {
   trace_flags?: string;
 }
 
-class PinoLogger extends Logger {
+export class PinoLogger extends Logger {
   private EVENT = "LOG_EVENT";
   private queue = batchQueue<Log>((logs) => {
     this.emitter.emit(this.EVENT, logs);
@@ -30,11 +33,17 @@ class PinoLogger extends Logger {
 
   public instance;
 
-  constructor() {
-    super();
+  constructor(
+    public release = getEnvironment("LOGGER_RELEASE", ""),
+    public environment = getEnvironment("LOGGER_ENVIRONMENT", ""),
+    public service = getEnvironment("LOGGER_SERVICE", "")
+  ) {
+    super(release, environment, service);
 
     const streams = [
-      environment.LOCAL ? { stream: pretty({}) } : { stream: process.stdout },
+      environmentVariables.LOCAL
+        ? { stream: pretty({}) }
+        : { stream: process.stdout },
       {
         stream: {
           write: (message: string) => {
@@ -57,8 +66,7 @@ class PinoLogger extends Logger {
               timestamp: dayjs(payload.time).toISOString(),
               hostname: payload.hostname,
               service: payload.service ?? this.service,
-              environment:
-                payload.environment ?? environment.DOPPLER_ENVIRONMENT,
+              environment: payload.environment ?? environment,
               message: payload.msg,
               ip: payload.ip,
               release: payload.release,
@@ -76,7 +84,7 @@ class PinoLogger extends Logger {
 
     this.instance = pino(
       {
-        enabled: !environment.TEST,
+        enabled: !environmentVariables.TEST,
       },
       pino.multistream(streams)
     );

@@ -3,12 +3,9 @@ import { FileUpload } from "graphql-upload";
 import https from "https";
 import { Stream } from "stream";
 
-import { environment } from "./environment";
 import { getFileExtension } from "./files";
 import { logger } from "./logger";
 import { uuid } from "./uuid";
-
-AWS.config.update({ region: environment.AWS_REGION });
 
 export class S3Bucket {
   private client = new AWS.S3({
@@ -129,6 +126,3 @@ export class S3Bucket {
     return this.client.deleteObject({ Bucket: this.bucket, Key: key }, done);
   }
 }
-
-export const getPublicImageUrl = (name: string) =>
-  `https://${environment.S3_PUBLIC_BUCKET_NAME}.s3.${environment.AWS_REGION}.amazonaws.com/${name}`;

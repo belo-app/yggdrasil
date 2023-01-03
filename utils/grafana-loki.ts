@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { environment } from "./environment";
 import { Log } from "./logger/pino";
 
-class GrafanaLoki {
+export class GrafanaLoki {
   public canUse = !environment.LOCAL;
   private username!: string;
   private password!: string;
@@ -75,9 +75,3 @@ class GrafanaLoki {
       .catch((error) => this.handleError(error));
   };
 }
-
-export const grafanaLoki = new GrafanaLoki(
-  environment.LOKI_HOST,
-  environment.LOKI_USER,
-  environment.LOKI_PASSWORD
-);

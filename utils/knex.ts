@@ -1,10 +1,11 @@
 import Knex, { Knex as KnexType } from "knex";
 import { knexSnakeCaseMappers, Model } from "objection";
 
-import { environment } from "./environment";
-import { connectToMongo } from "./mongoose";
+import { environment, getEnvironment } from "./environment";
 
 export interface DatabaseConfig {
+  url: string;
+  readReplicaUrl: string;
   pool: {
     min: number;
     max: number;
@@ -16,7 +17,9 @@ let knexReadInstance!: KnexType;
 let knex!: KnexType;
 let knexRead!: KnexType;
 
-export const setupDatabase = async (config: Partial<DatabaseConfig> = {}) => {
+export const setupPostgresDatabase = async (
+  config: Partial<DatabaseConfig> = {}
+) => {
   knexInstance = Knex({
     client: "postgresql",
 
@@ -33,7 +36,7 @@ export const setupDatabase = async (config: Partial<DatabaseConfig> = {}) => {
 
     useNullAsDefault: true,
 
-    connection: environment.DATABASE_URL,
+    connection: config.url ?? getEnvironment("DATABASE_URL"),
 
     ...knexSnakeCaseMappers(),
   });
@@ -54,7 +57,7 @@ export const setupDatabase = async (config: Partial<DatabaseConfig> = {}) => {
 
     useNullAsDefault: true,
 
-    connection: environment.DATABASE_READ_REPLICA_URL,
+    connection: config.readReplicaUrl,
 
     ...knexSnakeCaseMappers(),
   });
@@ -63,10 +66,7 @@ export const setupDatabase = async (config: Partial<DatabaseConfig> = {}) => {
   knexRead = knexReadInstance;
 
   Model.knex(knex);
-  await connectToMongo();
 };
-
-/* setupDatabase(); */
 
 if (environment.TEST) {
   knex = new Proxy(

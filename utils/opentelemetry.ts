@@ -6,37 +6,25 @@ import { SemanticResourceAttributes } from "@opentelemetry/semantic-conventions"
 
 import { environment } from "./environment";
 
-class Opentelemetry {
+export class Opentelemetry {
   private sdk?: opentelemetry.NodeSDK;
 
-  constructor(resourceName: string) {
-    this.sdk =
-      !environment.LOCAL && !environment.DISABLE_TRACE
-        ? new opentelemetry.NodeSDK({
-            resource: new Resource({
-              [SemanticResourceAttributes.SERVICE_NAME]: resourceName,
-            }),
-            spanProcessor: new BatchSpanProcessor(
-              new OTLPTraceExporter({
-                url: environment.OTLP_TRACE_EXPORTER_URL,
-              })
-            ),
-          })
-        : undefined;
+  constructor(resourceName: string, traceExporterUrl: string) {
+    this.sdk = !environment.LOCAL
+      ? new opentelemetry.NodeSDK({
+          resource: new Resource({
+            [SemanticResourceAttributes.SERVICE_NAME]: resourceName,
+          }),
+          spanProcessor: new BatchSpanProcessor(
+            new OTLPTraceExporter({
+              url: traceExporterUrl,
+            })
+          ),
+        })
+      : undefined;
   }
 
   public async start() {
     return this.sdk?.start();
   }
-}
-
-type AsyncFunction<T> = () => Promise<T>;
-
-export async function withTelemetry<T>(
-  name: string,
-  asyncFunction: AsyncFunction<T>
-): Promise<T> {
-  const opentelemetry = new Opentelemetry(name);
-
-  return opentelemetry.start().then(() => asyncFunction());
 }

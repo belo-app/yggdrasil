@@ -1,24 +1,9 @@
 import { Handler, Request, Response } from "express";
-import { omit, pick } from "lodash";
+import { pick } from "lodash";
 
-import { bigQuery } from "../bigquery";
-import { grafanaLoki } from "../grafana-loki";
 import { pinoLogger } from "./pino";
 
 export const logger = pinoLogger;
-
-logger.listenLogs((logs) => {
-  void grafanaLoki.pushLogs(logs).catch(() => void 0);
-
-  void bigQuery
-    .get()
-    ?.dataset("applogs")
-    .table("prodlogs")
-    .insert(
-      logs.map((log) => omit(log, ["trace_id", "span_id", "trace_flags"]))
-    )
-    .catch(() => void 0);
-});
 
 export function getRequestLog(request: Request, response: Response) {
   const data: Record<string, any> = pick(request, [

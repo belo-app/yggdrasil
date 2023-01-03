@@ -2,7 +2,7 @@ import EventEmitter from "events";
 import { cloneDeep, pickBy } from "lodash";
 import Redact from "redact-secrets";
 
-import { environment } from "../environment";
+import { getEnvironment } from "../environment";
 
 export type LoggerFunction = (
   message: string,
@@ -13,11 +13,12 @@ const redact = Redact("<***>");
 
 export class Logger {
   public emitter = new EventEmitter();
-  public service = "";
-  public release = environment.GIT_SHA;
-  public environment = environment.DOPPLER_ENVIRONMENT;
 
-  constructor() {
+  constructor(
+    public release = getEnvironment("LOGGER_RELEASE", ""),
+    public environment = getEnvironment("LOGGER_ENVIRONMENT", ""),
+    public service = getEnvironment("LOGGER_SERVICE", "")
+  ) {
     process.on("uncaughtException", (error) => {
       this.fatal("uncaught exception: ", error);
     });

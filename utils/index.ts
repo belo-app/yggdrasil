@@ -39,7 +39,6 @@ export * from "./format";
 export * from "./grafana-loki";
 export * from "./http";
 export * from "./image";
-export * from "./influx";
 export * from "./json-schema";
 export * from "./knex";
 export * from "./lambda";

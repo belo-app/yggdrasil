@@ -10,18 +10,20 @@ import { MeterProvider } from "@opentelemetry/sdk-metrics";
 import memoize from "memoizee";
 import os from "os";
 
-import { environment } from "./environment";
+import { environment as environmentVariables } from "./environment";
 
-class PrometheusMetricService {
+export class PrometheusMetricService {
   private meter?: Meter;
   private metrics: any = {};
 
-  constructor() {
-    const meterProvider = !environment.LOCAL ? new MeterProvider() : undefined;
+  constructor(private environment: string, port = 9464) {
+    const meterProvider = !environmentVariables.LOCAL
+      ? new MeterProvider()
+      : undefined;
 
     meterProvider?.addMetricReader(
       new PrometheusExporter({
-        port: 9464,
+        port,
       })
     );
 
@@ -35,7 +37,7 @@ class PrometheusMetricService {
   public getEnvironmentAttributes = memoize((attributes?: MetricAttributes) => {
     return {
       hostname: os.hostname(),
-      environment: environment.DOPPLER_ENVIRONMENT,
+      environment: this.environment,
       ...attributes,
     };
   });
@@ -86,5 +88,3 @@ class PrometheusMetricService {
     return this.metrics[name];
   }
 }
-
-export const prometheusMetricsService = new PrometheusMetricService();

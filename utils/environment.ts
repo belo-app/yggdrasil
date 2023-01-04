@@ -11,8 +11,8 @@ export const environment = {
 environment.LOCAL = !environment.GIT_SHA;
 environment.TEST = process.env.NODE_ENV === "test";
 
-export function extendSharedEnvironment(
-  packageEnvironment: Record<string, any>
-) {
+export function extendSharedEnvironment<T>(
+  packageEnvironment: T
+): typeof environment & T {
   return { ...environment, ...packageEnvironment };
 }

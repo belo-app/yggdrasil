@@ -1,5 +1,15 @@
 
 
+## [0.1.10](https://github.com/belo-app/yggdrasil/compare/0.1.9...0.1.10) (2023-01-04)
+
+
+### Bug Fixes
+
+* **redis:** mock url ([b7452fe](https://github.com/belo-app/yggdrasil/commit/b7452fe12b0fd34fabe0ff2ee46537adc5f05e8a))
+* **redis:** off redis ([cbb946d](https://github.com/belo-app/yggdrasil/commit/cbb946da4843cd8bf1b281f242cf9fad552fde4d))
+* **redis:** redis url ([9813067](https://github.com/belo-app/yggdrasil/commit/98130675a44dbce35637b9bfd74786ed5acd3518))
+* **utils:** uncomment redis ([20908a4](https://github.com/belo-app/yggdrasil/commit/20908a405aef252dd120b3e653023a66ffc4091e))
+
 * fix(redis): redis url (9813067)
 * fix(redis): mock url (b7452fe)
 * fix(redis): off redis (cbb946d)

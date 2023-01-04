@@ -23,7 +23,7 @@
     "@opentelemetry/resources": "^1.8.0",
     "@opentelemetry/sdk-node": "^0.34.0",
     "@opentelemetry/semantic-conventions": "^1.8.0",
-    "@sinclair/typebox": "^0.24.46",
+    "@sinclair/typebox": "^0.25.16",
     "@typegoose/typegoose": "^9.12.1",
     "argon2": "^0.29.1",
     "aws-sdk": "^2.1231.0",

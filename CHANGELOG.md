@@ -1,5 +1,19 @@
 
 
+## [0.2.0](https://github.com/belo-app/yggdrasil/compare/0.1.10...0.2.0) (2023-01-04)
+
+
+### Features
+
+* **service:** add start function ([cfd2205](https://github.com/belo-app/yggdrasil/commit/cfd220532da6f8bffaa3b7d7b94e3aa26d78f9da))
+
+
+### Bug Fixes
+
+* **environment:** fix environment typing ([66366a8](https://github.com/belo-app/yggdrasil/commit/66366a8f74dfa5fdd550a456ddd02a93abab900b))
+* **model:** add model folder ([7077f48](https://github.com/belo-app/yggdrasil/commit/7077f480b491441e44b7b38e85f2e28af061a7fb))
+* **typebox:** update typebox version ([b8bd450](https://github.com/belo-app/yggdrasil/commit/b8bd450fce2d6ec61615d1ddf02dce55bcc69df9))
+
 ## [0.1.10](https://github.com/belo-app/yggdrasil/compare/0.1.9...0.1.10) (2023-01-04)
 
 

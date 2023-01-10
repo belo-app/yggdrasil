@@ -109,13 +109,15 @@ export class BaseController implements Controller {
     public path = "",
     private controllers: Controller[],
     private tags: Tag[] = [],
-    private extend?: AppPluginCallback
+    private plugins: AppPluginCallback[] = []
   ) {}
 
   public router: AppPluginCallback = (instance, _, next) => {
     this.configDocs(instance, _, next);
 
-    this.extend?.(instance, _, next);
+    for (const plugin of this.plugins) {
+      plugin(instance, _, next);
+    }
 
     for (const controller of this.controllers) {
       instance.register(controller.router, { prefix: controller.path });

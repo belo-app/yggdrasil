@@ -1,5 +1,12 @@
 
 
+## [0.3.0](https://github.com/belo-app/yggdrasil/compare/0.2.0...0.3.0) (2023-01-10)
+
+
+### Features
+
+* **service:** add options in star fastify ([e06cf90](https://github.com/belo-app/yggdrasil/commit/e06cf908fbb7347944ae406a359b8a91c6355f50))
+
 ## [0.2.0](https://github.com/belo-app/yggdrasil/compare/0.1.10...0.2.0) (2023-01-04)
 
 

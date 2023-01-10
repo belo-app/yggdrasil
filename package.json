@@ -1,7 +1,7 @@
 {
   "name": "yggdrasil",
   "description": "belo standard library",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
   "main": "index.ts",

@@ -1,17 +1,12 @@
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import boom from "@hapi/boom";
-import fastify from "fastify";
+import fastify, { FastifyInstance } from "fastify";
 
 import { logger } from "../utils";
 import { registerPlugins, registerRoutes } from "./routes";
 import { BaseController } from "./routes/utils";
 
-export async function start(
-  name: string,
-  port: number,
-  controllers: BaseController[]
-) {
-  const app = fastify({
+export function createAppInstance() {
+  return fastify({
     logger: logger.instance,
     trustProxy: true,
     ajv: {
@@ -21,34 +16,30 @@ export async function start(
       },
     },
   }).withTypeProvider<TypeBoxTypeProvider>();
+}
 
-  app.setErrorHandler((error, _, response) => {
-    logger.error("GlobalErrorHandler", error);
+export async function start(
+  name: string,
+  port: number,
+  controllers: BaseController[],
+  appInstance?: FastifyInstance,
+  options?: {
+    registerPlugins?: (app: FastifyInstance) => Promise<void>;
+    errorHandler?: (error, request, response) => void;
+  }
+) {
+  const app = appInstance ?? createAppInstance();
 
-    if (error.validation) {
-      const payload = boom.badRequest().output.payload;
-
-      return response
-        .code(400)
-        .type("application/json")
-        .send({ ...payload, message: error.message });
-    }
-
-    if (error.statusCode) {
-      return response.code(error.statusCode).type("application/json").send({
-        code: error.statusCode,
-        error: error.name,
-        message: error.message,
-      });
-    }
-
-    return response
-      .code(500)
-      .type("application/json")
-      .send(boom.internal().output.payload);
-  });
+  if (typeof options?.errorHandler === "function") {
+    app.setErrorHandler(options.errorHandler);
+  }
 
   await registerPlugins(app);
+
+  if (typeof options?.registerPlugins === "function") {
+    await options.registerPlugins(app);
+  }
+
   registerRoutes(app, controllers);
 
   await app.listen({

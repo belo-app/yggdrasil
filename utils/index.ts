@@ -64,3 +64,5 @@ export * from "./time";
 export * from "./totp";
 export * from "./uuid";
 export * from "./validate";
+export * from "@hapi/boom";
+export * from "fastify";

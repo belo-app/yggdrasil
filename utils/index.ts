@@ -64,5 +64,6 @@ export * from "./time";
 export * from "./totp";
 export * from "./uuid";
 export * from "./validate";
+export * from "@fastify/type-provider-typebox";
 export * from "@hapi/boom";
-export * from "fastify";
+export { default as fastify } from "fastify";

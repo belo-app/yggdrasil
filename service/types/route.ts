@@ -42,7 +42,7 @@ type ContextConfig = ContextConfigDefault & {
   rateLimit?: RateLimitPluginOptions;
 };
 
-export type RouteHandler<S extends Schema> = RouteHandlerMethod<
+export type MyRouteHandler<S extends Schema> = RouteHandlerMethod<
   Server,
   IncomingMessage,
   ServerResponse,

@@ -2,6 +2,7 @@ export type BlockchainAddressType =
   | "TRC20"
   | "P2SH"
   | "BECH32"
+  | "LN"
   | "P2PKH"
   | "ERC20";
 

@@ -2,6 +2,7 @@ import * as bip32 from "bip32";
 import * as bip39 from "bip39";
 import * as bitcoin from "bitcoinjs-lib";
 
+import { generateRandomSecret } from "../random";
 import { BlockchainAddressType, BlockchainService } from "./generic";
 
 export class BitcoinService extends BlockchainService {
@@ -100,6 +101,12 @@ export class BitcoinService extends BlockchainService {
           value: btc.address,
           pubKey: btc.pubkey?.toString("base64"),
           hash: btc.hash?.toString("base64"),
+        };
+      }
+      case "LN": {
+        return {
+          type,
+          value: `lnbc11${generateRandomSecret()}${generateRandomSecret()}${generateRandomSecret()}`,
         };
       }
       default: {

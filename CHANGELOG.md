@@ -1,5 +1,20 @@
 
 
+## [0.4.0](https://github.com/belo-app/yggdrasil/compare/0.3.0...0.4.0) (2023-02-15)
+
+
+### Features
+
+* **blockchain:** generate blockchain address ([cde4000](https://github.com/belo-app/yggdrasil/commit/cde40004586bad9499679276fc665aa3595b0578))
+* **ln-invoice:** generate and read ln invoices ([7cdc316](https://github.com/belo-app/yggdrasil/commit/7cdc316334e5d5cf8f59721367ad34f2a35f860b))
+* **ln:** generate random ln address ([bf593aa](https://github.com/belo-app/yggdrasil/commit/bf593aa76a06d5f8aa3fc9bd7190a2e82e1b0bf5))
+
+
+### Bug Fixes
+
+* **ln-invoice:** pass privateKey and destination as params ([176631f](https://github.com/belo-app/yggdrasil/commit/176631f84d7c5911996bd8d3a930739393135f61))
+* **mongoose:** set strict query mongoose to false ([b7f3bbf](https://github.com/belo-app/yggdrasil/commit/b7f3bbf483a1a16ab4e1d95bf9f5b4e467719f77))
+
 ## [0.3.0](https://github.com/belo-app/yggdrasil/compare/0.2.0...0.3.0) (2023-01-10)
 
 

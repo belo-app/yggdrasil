@@ -1644,20 +1644,6 @@
     fastify-plugin "^4.2.1"
     helmet "^6.0.0"
 
-"@fastify/multipart@^7.2.0":
-  version "7.3.0"
-  resolved "https://registry.npmjs.org/@fastify/multipart/-/multipart-7.3.0.tgz"
-  integrity sha512-tbzQiRFxoADCn0G10CqiQ/nDWWcfegtwg826Pfz2h7+XvuqJhGnko0TbafrWIY7hnGD+sNCGMdiTVsxxs6zigA==
-  dependencies:
-    "@fastify/busboy" "^1.0.0"
-    "@fastify/deepmerge" "^1.0.0"
-    "@fastify/error" "^3.0.0"
-    end-of-stream "^1.4.4"
-    fastify-plugin "^4.0.0"
-    hexoid "^1.0.0"
-    secure-json-parse "^2.4.0"
-    stream-wormhole "^1.1.0"
-
 "@fastify/rate-limit@^7.5.0":
   version "7.6.0"
   resolved "https://registry.npmjs.org/@fastify/rate-limit/-/rate-limit-7.6.0.tgz"
@@ -1817,11 +1803,6 @@
   version "2.2.5"
   resolved "https://registry.npmjs.org/@iarna/toml/-/toml-2.2.5.tgz"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
-
-"@influxdata/influxdb-client@^1.31.0":
-  version "1.33.0"
-  resolved "https://registry.npmjs.org/@influxdata/influxdb-client/-/influxdb-client-1.33.0.tgz"
-  integrity sha512-ctICXZqq4Nff44Q5Pk3I63/jpZGTZ9VPr8dPJ78eujEHrTjz1M6mlNnXuF+TdqFfzlpmjxo4TcYEyDOPK+SQbQ==
 
 "@ioredis/commands@^1.1.1":
   version "1.2.0"
@@ -3441,6 +3422,11 @@ bech32@1.1.4, bech32@^1.1.2:
   resolved "https://registry.npmjs.org/bech32/-/bech32-1.1.4.tgz"
   integrity sha512-s0IrSOzLlbvX7yp4WBfPITzpAU8sqQcpsmwXDiKwrG4r491vwCO/XpejasRNl0piBMe/DvP4Tz0mIS/X1DPJBQ==
 
+bech32@2.0.0, bech32@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/bech32/-/bech32-2.0.0.tgz#078d3686535075c8c79709f054b1b226a133b355"
+  integrity sha512-LcknSilhIGatDAsY1ak2I8VtGaHNhgMSYVxFrGLXv+xLHytaKZKcaUJJUE7qmBr7h33o5YQwP55pMI0xmkpJwg==
+
 before-after-hook@^2.2.0:
   version "2.2.3"
   resolved "https://registry.npmjs.org/before-after-hook/-/before-after-hook-2.2.3.tgz"
@@ -3463,7 +3449,7 @@ bindings@^1.3.0, bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-bip174@^2.0.1:
+bip174@^2.0.1, bip174@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/bip174/-/bip174-2.1.0.tgz"
   integrity sha512-lkc0XyiX9E9KiVAS1ZiOqK1xfiwvf4FXDDdkDq5crcDzOq+xGytY+14qCsqz7kCiy8rpN1CRNfacRhf9G3JNSA==
@@ -3502,6 +3488,20 @@ bitcoin-ops@^1.3.0, bitcoin-ops@^1.4.0:
   version "1.4.1"
   resolved "https://registry.npmjs.org/bitcoin-ops/-/bitcoin-ops-1.4.1.tgz"
   integrity sha512-pef6gxZFztEhaE9RY9HmWVmiIHqCb2OyS4HPKkpc6CIiiOa3Qmuoylxc5P2EkU3w+5eTSifI9SEZC88idAIGow==
+
+bitcoinjs-lib@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/bitcoinjs-lib/-/bitcoinjs-lib-6.1.0.tgz#2e3123d63eab5e8e752fd7e2f237314f35ed738f"
+  integrity sha512-eupi1FBTJmPuAZdChnzTXLv2HBqFW2AICpzXZQLniP0V9FWWeeUQSMKES6sP8isy/xO0ijDexbgkdEyFVrsuJw==
+  dependencies:
+    bech32 "^2.0.0"
+    bip174 "^2.1.0"
+    bs58check "^2.1.2"
+    create-hash "^1.1.0"
+    ripemd160 "^2.0.2"
+    typeforce "^1.11.3"
+    varuint-bitcoin "^1.1.2"
+    wif "^2.0.1"
 
 bitcoinjs-lib@^5.2.0:
   version "5.2.0"
@@ -3547,15 +3547,15 @@ blakejs@^1.1.0:
   resolved "https://registry.npmjs.org/blakejs/-/blakejs-1.2.1.tgz"
   integrity sha512-QXUSXI3QVc/gJME0dBpXrag1kbzOqCjCX8/b54ntNyW6sjtoqxqRk3LTmXzaJoh71zMsDCjM+47jS7XiwN/+fQ==
 
+bn.js@5.2.1, bn.js@^5.2.0, bn.js@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.npmjs.org/bn.js/-/bn.js-5.2.1.tgz"
+  integrity sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==
+
 bn.js@^4.11.0, bn.js@^4.11.8, bn.js@^4.11.9:
   version "4.12.0"
   resolved "https://registry.npmjs.org/bn.js/-/bn.js-4.12.0.tgz"
   integrity sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==
-
-bn.js@^5.2.0, bn.js@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/bn.js/-/bn.js-5.2.1.tgz"
-  integrity sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==
 
 body-parser@1.20.1:
   version "1.20.1"
@@ -3574,6 +3574,18 @@ body-parser@1.20.1:
     raw-body "2.5.1"
     type-is "~1.6.18"
     unpipe "1.0.0"
+
+bolt07@1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/bolt07/-/bolt07-1.8.3.tgz#1f8e581c715c4289fd16949237f9c4061d06081f"
+  integrity sha512-NXML2vzFmxRrdWt+wNqphU6f8FmS7tkebqDLIhfc8xKoOcGFv4Kf7WuJbKBqcfFDQVXpCpKAF7FQAgTIN2/30A==
+  dependencies:
+    bn.js "5.2.1"
+
+bolt09@0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/bolt09/-/bolt09-0.2.5.tgz#924de4a95aad5ca507d25b38e1b20e3bb9bc680b"
+  integrity sha512-LH8wb3KbVP62SUpnwqUWqoyTUhda3JFQh4TSe6urt2mEAC0w53PSwqB4wqnHdG7QpE209Q2WQl/QH1XtVIsD3g==
 
 bowser@^2.11.0:
   version "2.11.0"
@@ -4788,7 +4800,7 @@ encodeurl@~1.0.2:
   resolved "https://registry.npmjs.org/encodeurl/-/encodeurl-1.0.2.tgz"
   integrity sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==
 
-end-of-stream@^1.1.0, end-of-stream@^1.4.1, end-of-stream@^1.4.4:
+end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   version "1.4.4"
   resolved "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.4.tgz"
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
@@ -6339,11 +6351,6 @@ hexer@^1.5.0:
     process "^0.10.0"
     xtend "^4.0.0"
 
-hexoid@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/hexoid/-/hexoid-1.0.0.tgz"
-  integrity sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==
-
 hmac-drbg@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/hmac-drbg/-/hmac-drbg-1.0.1.tgz"
@@ -6617,6 +6624,18 @@ interpret@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/interpret/-/interpret-2.2.0.tgz"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
+
+invoices@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/invoices/-/invoices-2.2.3.tgz#055ada5fd81889d4b3823c4adc51349ecaada64a"
+  integrity sha512-tYOmXKPsz8/jxtPDmy7HS7Z4VqQ9VK2Y3J37hhHEhU337AoL1CUlEqccTEb4nZQ36HHnFhlcKLoDz7C8W5lNdg==
+  dependencies:
+    bech32 "2.0.0"
+    bitcoinjs-lib "6.1.0"
+    bn.js "5.2.1"
+    bolt07 "1.8.3"
+    bolt09 "0.2.5"
+    tiny-secp256k1 "2.2.1"
 
 ioredis@^5.2.3:
   version "5.2.4"
@@ -9558,7 +9577,7 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ripemd160@^2.0.0, ripemd160@^2.0.1:
+ripemd160@^2.0.0, ripemd160@^2.0.1, ripemd160@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/ripemd160/-/ripemd160-2.0.2.tgz"
   integrity sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==
@@ -10018,11 +10037,6 @@ stream-shift@^1.0.0:
   resolved "https://registry.npmjs.org/stream-shift/-/stream-shift-1.0.1.tgz"
   integrity sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==
 
-stream-wormhole@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/stream-wormhole/-/stream-wormhole-1.1.0.tgz"
-  integrity sha512-gHFfL3px0Kctd6Po0M8TzEvt3De/xu6cnRrjlfYNhwbhLPLwigI2t1nc6jrzNuaYg5C4YF78PPFuQPzRiqn9ew==
-
 streamsearch@0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/streamsearch/-/streamsearch-0.1.2.tgz"
@@ -10332,6 +10346,13 @@ tiny-lru@^10.0.0:
   resolved "https://registry.npmjs.org/tiny-lru/-/tiny-lru-10.0.1.tgz"
   integrity sha512-Vst+6kEsWvb17Zpz14sRJV/f8bUWKhqm6Dc+v08iShmIJ/WxqWytHzCTd6m88pS33rE2zpX34TRmOpAJPloNCA==
 
+tiny-secp256k1@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/tiny-secp256k1/-/tiny-secp256k1-2.2.1.tgz#a61d4791b7031aa08a9453178a131349c3e10f9b"
+  integrity sha512-/U4xfVqnVxJXN4YVsru0E6t5wVncu2uunB8+RVR40fYUxkKYUPS10f+ePQZgFBoE/Jbf9H1NBveupF2VmB58Ng==
+  dependencies:
+    uint8array-tools "0.0.7"
+
 tiny-secp256k1@^1.1.1, tiny-secp256k1@^1.1.3:
   version "1.1.6"
   resolved "https://registry.npmjs.org/tiny-secp256k1/-/tiny-secp256k1-1.1.6.tgz"
@@ -10548,6 +10569,11 @@ uglify-js@^3.1.4:
   resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-3.17.4.tgz"
   integrity sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==
 
+uint8array-tools@0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/uint8array-tools/-/uint8array-tools-0.0.7.tgz#a7a2bb5d8836eae2fade68c771454e6a438b390d"
+  integrity sha512-vrrNZJiusLWoFWBqz5Y5KMCgP9W9hnjZHzZiZRT8oNAkq3d5Z5Oe76jAvVVSRh4U8GGR90N2X1dWtrhvx6L8UQ==
+
 ultra-runner@^3.10.5:
   version "3.10.5"
   resolved "https://registry.npmjs.org/ultra-runner/-/ultra-runner-3.10.5.tgz"
@@ -10727,7 +10753,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-varuint-bitcoin@^1.0.4:
+varuint-bitcoin@^1.0.4, varuint-bitcoin@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/varuint-bitcoin/-/varuint-bitcoin-1.1.2.tgz"
   integrity sha512-4EVb+w4rx+YfVM32HQX42AbbT7/1f5zwAYhIujKXKk8NQK+JfRVl3pqT3hjNn/L+RstigmGGKVwHA/P0wgITZw==

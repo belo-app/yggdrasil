@@ -20,6 +20,7 @@ export * from "./argon";
 export * from "./backoff";
 export * from "./batch-queue";
 export * from "./bigquery";
+export * from "./blockchain";
 export * from "./cache";
 export * from "./calc";
 export * from "./card-pin";

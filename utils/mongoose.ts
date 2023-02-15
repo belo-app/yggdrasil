@@ -13,6 +13,8 @@ const connect = (url: string) => {
 };
 
 export const connectToMongo = async (url: string) => {
+  mongoose.set("strictQuery", false);
+
   mongoose.connection.on("connecting", () => {
     logger.info("connecting to MongoDb");
   });

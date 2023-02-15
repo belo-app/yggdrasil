@@ -11,17 +11,21 @@ import { generateSha256Hash } from "../random";
 import { uuid } from "../uuid";
 
 export class LigthningNetworkService {
-  public generateInvoice({
-    paymentId,
-    amount,
-    description = "",
-    chainAddresses,
-  }: {
-    paymentId: string;
-    amount: number;
-    description?: string;
-    chainAddresses?: string[];
-  }) {
+  public generateInvoice(
+    privateKey: string,
+    destination: string,
+    {
+      paymentId,
+      amount,
+      description = "",
+      chainAddresses,
+    }: {
+      paymentId: string;
+      amount: number;
+      description?: string;
+      chainAddresses?: string[];
+    }
+  ) {
     const data = removeUndefinedValues({
       chain_addresses: chainAddresses,
       created_at: dayjs().toISOString(),
@@ -40,21 +44,14 @@ export class LigthningNetworkService {
 
     const { hash, hrp, tags } = createUnsignedRequest(data);
 
-    const verify = {
-      destination:
-        "03e7156ae33b0a208d0744199163177e909e80176e55d97a2f221ede0f934dd9ad",
-      private_key:
-        "e126f68f7eafcc8b74f54d269fe206be715000f94dac067d1c04a8ca3b2db734",
-    };
-
     const signature = secp256k1.sign(
       Buffer.from(hash, "hex"),
-      Buffer.from(verify.private_key, "hex")
+      Buffer.from(privateKey, "hex")
     );
     return createSignedRequest({
       hrp,
       tags,
-      destination: verify.destination,
+      destination,
       signature: Buffer.from(signature).toString("hex"),
     });
   }

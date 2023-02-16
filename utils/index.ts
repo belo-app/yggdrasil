@@ -34,6 +34,7 @@ export * from "./encoding";
 export * from "./environment";
 export * from "./error";
 export * from "./ethereum-node";
+export * from "./mongoose";
 export * from "./files";
 export * from "./format";
 export * from "./grafana-loki";

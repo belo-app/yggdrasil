@@ -46,6 +46,7 @@ export * from "./lambda";
 export * from "./lock";
 export * from "./logger";
 export * from "./metrics";
+export * from "./mongoose";
 export * from "./numbers";
 export * from "./objects";
 export * from "./opentelemetry";

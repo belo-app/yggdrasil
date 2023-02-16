@@ -10,6 +10,43 @@ import { removeUndefinedValues } from "../objects";
 import { generateSha256Hash } from "../random";
 import { uuid } from "../uuid";
 
+export interface LigthningNetworkInvoiceRequest {
+  paymentId: string;
+  amount: number;
+  description?: string;
+  chainAddresses?: string[];
+}
+
+export interface LigthningNetworkInvoiceData {
+  chain_addresses?: string[];
+  cltv_delta: number;
+  created_at?: string;
+  description?: string;
+  description_hash?: string;
+  destination: string;
+  expires_at: string;
+  features?: {
+    bit: number;
+    is_required: boolean;
+    type: string;
+  }[];
+  id: string;
+  is_expired: boolean;
+  metadata?: string;
+  mtokens: string;
+  network: string;
+  payment?: string;
+  routes?: {
+    base_fee_mtokens: string;
+    channel?: string;
+    cltv_delta?: number;
+    fee_rate?: number;
+    public_key: string;
+  }[];
+  safe_tokens: number;
+  tokens: number;
+}
+
 export class LigthningNetworkService {
   public generateInvoice(
     privateKey: string,
@@ -19,13 +56,8 @@ export class LigthningNetworkService {
       amount,
       description = "",
       chainAddresses,
-    }: {
-      paymentId: string;
-      amount: number;
-      description?: string;
-      chainAddresses?: string[];
-    }
-  ) {
+    }: LigthningNetworkInvoiceRequest
+  ): string {
     const data = removeUndefinedValues({
       chain_addresses: chainAddresses,
       created_at: dayjs().toISOString(),
@@ -48,15 +80,17 @@ export class LigthningNetworkService {
       Buffer.from(hash, "hex"),
       Buffer.from(privateKey, "hex")
     );
-    return createSignedRequest({
+    const { request } = createSignedRequest({
       hrp,
       tags,
       destination,
       signature: Buffer.from(signature).toString("hex"),
     });
+
+    return request;
   }
 
-  public readInvoice(value: string) {
-    return parsePaymentRequest({ request: value });
+  public readInvoice(lnInvoice: string): LigthningNetworkInvoiceData {
+    return parsePaymentRequest({ request: lnInvoice });
   }
 }

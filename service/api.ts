@@ -1,12 +1,14 @@
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import fastify, { FastifyInstance } from "fastify";
+import fastify, { FastifyInstance, FastifyServerOptions } from "fastify";
+import qs from "qs";
 
 import { logger } from "../utils";
 import { registerPlugins, registerRoutes } from "./routes";
 import { BaseController } from "./routes/utils";
 
-export function createAppInstance() {
+export function createAppInstance(options: FastifyServerOptions = {}) {
   return fastify({
+    querystringParser: (value) => qs.parse(value),
     logger: logger.instance,
     trustProxy: true,
     ajv: {
@@ -15,6 +17,7 @@ export function createAppInstance() {
         keywords: ["kind", "modifier"],
       },
     },
+    ...options,
   }).withTypeProvider<TypeBoxTypeProvider>();
 }
 

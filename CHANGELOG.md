@@ -1,5 +1,17 @@
 
 
+## [0.5.0](https://github.com/belo-app/yggdrasil/compare/0.4.0...0.5.0) (2023-02-23)
+
+
+### Features
+
+* **fastify-options:** pass fastify options as argument ([73445d8](https://github.com/belo-app/yggdrasil/commit/73445d8d79e0fbf9ed970c154ec53c789018d4ea))
+
+
+### Bug Fixes
+
+* **ln-typing:** define ln interfaces ([d61f909](https://github.com/belo-app/yggdrasil/commit/d61f90914fa9218c23f0c6188d318942d6b89c29))
+
 ## [0.4.0](https://github.com/belo-app/yggdrasil/compare/0.3.0...0.4.0) (2023-02-15)
 
 

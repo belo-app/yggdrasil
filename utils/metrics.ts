@@ -1,90 +1,134 @@
-import {
-  Counter,
-  Histogram,
-  Meter,
-  MetricAttributes,
-  MetricOptions,
-} from "@opentelemetry/api";
-import { PrometheusExporter } from "@opentelemetry/exporter-prometheus";
-import { MeterProvider } from "@opentelemetry/sdk-metrics";
+import http from "http";
 import memoize from "memoizee";
 import os from "os";
+import client, {
+  Counter,
+  CounterConfiguration,
+  Histogram,
+  HistogramConfiguration,
+} from "prom-client";
 
-import { environment as environmentVariables } from "./environment";
+import { environment, getEnvironment } from "./environment";
+import { logger } from "./logger";
 
-export class PrometheusMetricService {
-  private meter?: Meter;
+class PrometheusMetricService {
+  private client?: any;
   private metrics: any = {};
+  private service!: string;
+  private canUse = !environment.LOCAL;
 
-  constructor(private environment: string, port = 9464) {
-    const meterProvider = !environmentVariables.LOCAL
-      ? new MeterProvider()
-      : undefined;
-
-    meterProvider?.addMetricReader(
-      new PrometheusExporter({
-        port,
-      })
-    );
-
-    this.meter = meterProvider?.getMeter("prometheus");
+  constructor() {
+    if (!this.canUse) {
+      logger.warn("Metrics are disabled");
+      return;
+    }
+    this.client = client;
   }
 
-  public getMeter() {
-    return this.meter;
+  public setUpServer() {
+    const server = http.createServer(async (request, response) => {
+      if (request.url === "/metrics") {
+        response.writeHead(200, {
+          "Content-Type": this.client.register.contentType,
+        });
+        return response.end(await this.client.register.metrics());
+      }
+
+      response.writeHead(404);
+      return response.end();
+    });
+
+    server.listen("9464", () => {
+      logger.info(`${this.service} Metrics server listening on port 9464`);
+    });
   }
 
-  public getEnvironmentAttributes = memoize((attributes?: MetricAttributes) => {
-    return {
-      hostname: os.hostname(),
-      environment: this.environment,
-      ...attributes,
-    };
-  });
+  public setService(service: string) {
+    this.service = service;
+    this.client?.register.setDefaultLabels(this.getEnvironmentAttributes());
 
-  public getOrCreateCounter(
+    const shouldCollectDefaultMetrics =
+      getEnvironment("COLLECT_DEFAULT_METRICS") === "true";
+
+    if (shouldCollectDefaultMetrics) {
+      this.client?.collectDefaultMetrics();
+    }
+
+    this.setUpServer();
+  }
+
+  public getEnvironmentAttributes = memoize(
+    (attributes?: Record<string, string>) => {
+      return {
+        hostname: os.hostname(),
+        environment: getEnvironment("DOPPLER_ENVIRONMENT"),
+        service: attributes?.service ?? this.service,
+        ...attributes,
+      };
+    }
+  );
+
+  public getOrCreateHistogram(
     name: string,
-    options?: MetricOptions
-  ): Counter | undefined {
+    options: Omit<HistogramConfiguration<string>, "name">
+  ):
+    | (Histogram & {
+        record: (value: number, attributes: Record<string, any>) => void;
+      })
+    | undefined {
+    if (!this.client) {
+      return;
+    }
+
     if (this.metrics[name]) {
       return this.metrics[name];
     }
 
-    if (!this.meter) {
-      return;
-    }
-
-    const counter = this.meter?.createCounter(name, options);
+    const histogram: Histogram = new this.client.Histogram({
+      name,
+      ...options,
+    });
 
     this.metrics[name] = {
-      ...Object.assign({}, counter),
-      add: (value: number, attributes?: MetricAttributes) =>
-        counter.add(value, this.getEnvironmentAttributes(attributes)),
+      ...Object.assign({}, histogram),
+      record: (value: number, attributes: Record<string, any>) => {
+        histogram.observe(attributes, value);
+      },
     };
 
     return this.metrics[name];
   }
 
-  public getOrCreateHistogram(
+  public getOrCreateCounter(
     name: string,
-    options?: MetricOptions
-  ): Histogram | undefined {
+    options: Omit<CounterConfiguration<string>, "name">
+  ):
+    | (Counter & {
+        record: (value: number, attributes: Record<string, any>) => void;
+      })
+    | undefined {
+    if (!this.client) {
+      return;
+    }
+
     if (this.metrics[name]) {
       return this.metrics[name];
     }
 
-    if (!this.meter) {
-      return;
-    }
-
-    const histogram = this.meter?.createHistogram(name, options);
+    const counter: Counter = new this.client.Counter({
+      name,
+      ...options,
+    });
 
     this.metrics[name] = {
-      ...Object.assign({}, histogram),
-      record: (value: number, attributes?: MetricAttributes) =>
-        histogram.record(value, this.getEnvironmentAttributes(attributes)),
+      ...Object.assign({}, counter),
+      record: (value: number, attributes: Record<string, any>) => {
+        counter.inc(attributes, value);
+      },
     };
 
     return this.metrics[name];
   }
 }
+
+export const prometheusMetricsService = new PrometheusMetricService();

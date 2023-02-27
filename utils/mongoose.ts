@@ -8,7 +8,7 @@ const disconnect = () => {
   return mongoose.disconnect().catch(() => void 0);
 };
 
-const connect = (url: string) => {
+const connect = (url?: string) => {
   return mongoose.connect(url ?? getEnvironment("MONGO_DATABASE_URL"));
 };
 

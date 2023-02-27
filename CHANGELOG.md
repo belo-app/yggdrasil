@@ -1,5 +1,12 @@
 
 
+## [0.5.1](https://github.com/belo-app/yggdrasil/compare/0.5.0...0.5.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* **mongoose:** fix optional url parameter ([13174f5](https://github.com/belo-app/yggdrasil/commit/13174f5bcfa790247b0130f9aae4e57549312d2c))
+
 ## [0.5.0](https://github.com/belo-app/yggdrasil/compare/0.4.0...0.5.0) (2023-02-23)
 
 

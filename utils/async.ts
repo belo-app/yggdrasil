@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
+import { AxiosError, AxiosInstance } from "axios";
 import dayjs from "dayjs";
 import { cloneDeep, pick } from "lodash";
 
@@ -122,5 +122,3 @@ export const setupAxios = (instance: AxiosInstance) => {
     }
   );
 };
-
-setupAxios(axios);

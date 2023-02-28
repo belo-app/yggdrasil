@@ -1,11 +1,8 @@
 import AWS from "aws-sdk";
-import { FileUpload } from "graphql-upload";
 import https from "https";
 import { Stream } from "stream";
 
-import { getFileExtension } from "./files";
 import { logger } from "./logger";
-import { uuid } from "./uuid";
 
 export class S3Bucket {
   private client = new AWS.S3({
@@ -99,20 +96,6 @@ export class S3Bucket {
     } catch (error) {
       logger.fatal(`Move file S3 error`, { error });
     }
-  }
-
-  public async uploadUserFile(
-    file: FileUpload,
-    options?: { isPrivate: boolean }
-  ): Promise<string> {
-    const fileExtension = getFileExtension(file.filename) ?? "";
-    const name = `${uuid()}.${fileExtension}`;
-    const stream = file.createReadStream();
-
-    return this.uploadFile(stream, name, undefined, {
-      ContentType: file.mimetype,
-      ACL: options?.isPrivate ? undefined : "public-read",
-    });
   }
 
   public getSignedUrl = (key: string) => {

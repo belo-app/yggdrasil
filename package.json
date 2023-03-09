@@ -5,7 +5,7 @@
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
   "main": "index.ts",
-  "types": "index.ts",
+  "types": "environment.d.ts",
   "scripts": {
     "commit": "commit",
     "release": "release-it",

@@ -2,16 +2,6 @@ import { CronJob, CronJobParameters, CronTime } from "cron";
 
 import { logger } from "./logger";
 
-declare module "cron" {
-  interface CronTime {
-    toString: () => string;
-  }
-
-  interface CronJob {
-    cronTime: CronTime;
-  }
-}
-
 export interface CronJobData {
   key: string;
   options: CronJobParameters;

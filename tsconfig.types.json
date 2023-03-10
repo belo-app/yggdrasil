@@ -11,7 +11,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmit": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -33,6 +32,8 @@
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
     "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
     "outDir": "./dist"
   },
   "ts-node": {

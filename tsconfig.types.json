@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "incremental": true,
-    "target": "es2021",
+    "target": "es2022",
     "lib": ["esnext"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -34,6 +34,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
+    "declarationDir": "@types/yggdrassil",
     "outDir": "./dist"
   },
   "ts-node": {

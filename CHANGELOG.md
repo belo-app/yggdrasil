@@ -1,5 +1,19 @@
 
 
+## [0.7.0](https://github.com/belo-app/yggdrasil/compare/0.6.0...0.7.0) (2023-03-13)
+
+
+### Features
+
+* **typing:** add type definition file ([4108947](https://github.com/belo-app/yggdrasil/commit/410894727f9fd2e6a2e6caa0ce8c1e018fa1bda6))
+* **typping:** add definitio type files ([1949ac4](https://github.com/belo-app/yggdrasil/commit/1949ac4bebcb402fc58ef26ef955d6791817862b))
+
+
+### Bug Fixes
+
+* **types:** fix types path in package.json ([5bf861f](https://github.com/belo-app/yggdrasil/commit/5bf861f044ce13970c5469e0d18cdeacd503b3f4))
+* **typing:** build all types in @types/yggdrasil ([a281df7](https://github.com/belo-app/yggdrasil/commit/a281df72120b67fdca56b3ef55e3db958a0e9126))
+
 ## [0.6.0](https://github.com/belo-app/yggdrasil/compare/0.5.1...0.6.0) (2023-02-28)
 
 

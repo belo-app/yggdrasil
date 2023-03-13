@@ -1,0 +1,1 @@
+{"version":3,"file":"totp.d.ts","sourceRoot":"","sources":["../../../src/utils/totp.ts"],"names":[],"mappings":"AAEA,cAAM,IAAI;IACD,cAAc,CAAC,MAAM,EAAE,MAAM,EAAE,OAAO,EAAE,MAAM;;;;;IAO9C,WAAW,CAAC,MAAM,EAAE,MAAM,EAAE,KAAK,EAAE,MAAM;IAMzC,aAAa,CAAC,MAAM,EAAE,MAAM;CAKpC;AAED,eAAO,MAAM,IAAI,MAAa,CAAC"}

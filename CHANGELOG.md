@@ -1,5 +1,37 @@
 
 
+## [0.6.0](https://github.com/belo-app/yggdrasil/compare/0.5.1...0.6.0) (2023-02-28)
+
+
+### Features
+
+* **graphql:** remove graphql dependencies ([595489d](https://github.com/belo-app/yggdrasil/commit/595489da97f7e276065867771ce0844aacca2e9f))
+
+
+### Bug Fixes
+
+* **client:** add restClient and update metrics service ([b40fce0](https://github.com/belo-app/yggdrasil/commit/b40fce04061454e48c17d45d4388286c4786ead1))
+* remove func call and update json ([134961a](https://github.com/belo-app/yggdrasil/commit/134961a06cb3a26a4b9ad6d3f89d8eba1aacb96e))
+
+## [0.5.1](https://github.com/belo-app/yggdrasil/compare/0.5.0...0.5.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* **mongoose:** fix optional url parameter ([13174f5](https://github.com/belo-app/yggdrasil/commit/13174f5bcfa790247b0130f9aae4e57549312d2c))
+
+## [0.5.0](https://github.com/belo-app/yggdrasil/compare/0.4.0...0.5.0) (2023-02-23)
+
+
+### Features
+
+* **fastify-options:** pass fastify options as argument ([73445d8](https://github.com/belo-app/yggdrasil/commit/73445d8d79e0fbf9ed970c154ec53c789018d4ea))
+
+
+### Bug Fixes
+
+* **ln-typing:** define ln interfaces ([d61f909](https://github.com/belo-app/yggdrasil/commit/d61f90914fa9218c23f0c6188d318942d6b89c29))
+
 ## [0.4.0](https://github.com/belo-app/yggdrasil/compare/0.3.0...0.4.0) (2023-02-15)
 
 

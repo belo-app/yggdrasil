@@ -5,7 +5,7 @@
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
   "main": "src/index.ts",
-  "types": "@types/yggdrasil",
+  "types": "@types/yggdrasil/index.d.ts",
   "scripts": {
     "commit": "commit",
     "release": "release-it",

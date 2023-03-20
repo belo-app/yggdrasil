@@ -34,7 +34,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "@types/yggdrassil",
+    "declarationDir": "@types/yggdrasil",
     "outDir": "./dist"
   },
   "include": ["src"]

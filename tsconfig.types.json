@@ -34,13 +34,8 @@
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "@types/yggdrassil",
+    "declarationDir": "@types/yggdrasil",
     "outDir": "./dist"
   },
-  "ts-node": {
-    "transpileOnly": true,
-    "require": ["tsconfig-paths/register"],
-    "swc": true
-  },
-  "include": ["src/**/*"]
+  "include": ["src"]
 }

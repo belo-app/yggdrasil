@@ -5,6 +5,7 @@
   "author": "belo tech team <tech@belo.app>",
   "license": "MIT",
   "main": "src/index.ts",
+  "types": "@types/yggdrasil/index.d.ts",
   "scripts": {
     "commit": "commit",
     "release": "release-it",
@@ -84,7 +85,7 @@
     "@types/ioredis": "^4.28.10",
     "@types/memoizee": "^0.4.8",
     "@types/papaparse": "^5.3.5",
-    "jormungand": "https://github.com/belo-app/jormungand.git#0.2.4"
+    "jormungand": "https://github.com/belo-app/jormungand.git#0.3.0"
   },
   "release-it": {
     "git": {

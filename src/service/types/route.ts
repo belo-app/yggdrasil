@@ -1,5 +1,6 @@
 import { RateLimitPluginOptions } from "@fastify/rate-limit";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
+import boom from "@hapi/boom";
 import { Static, TSchema } from "@sinclair/typebox";
 import {
   ContextConfigDefault,
@@ -13,7 +14,18 @@ import {
 } from "fastify";
 import { IncomingMessage, Server, ServerResponse } from "http";
 
-import { Type } from "../../utils";
+import { MulterFile, Type } from "../../utils";
+
+declare module "fastify" {
+  interface FastifyRequest {
+    file?: MulterFile;
+    files?: MulterFile[] | Record<string, MulterFile[]>;
+  }
+
+  interface FastifyReply {
+    boom: typeof boom;
+  }
+}
 
 export interface Schema {
   summary: string;

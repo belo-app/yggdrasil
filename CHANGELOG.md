@@ -1,5 +1,15 @@
 
 
+## [0.7.1](https://github.com/belo-app/yggdrasil/compare/0.7.0...0.7.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* **package.json:** declare types directory ([0a6b040](https://github.com/belo-app/yggdrasil/commit/0a6b0400efab2967c18ceff2b1a5547f4e979a25))
+* **typeping:** fix types ([3db4d96](https://github.com/belo-app/yggdrasil/commit/3db4d96da99cd5a310da8ef4c2a61e75746c80ec))
+* **typo:** fix folder name ([5957b92](https://github.com/belo-app/yggdrasil/commit/5957b920af5ba38c3a08592fe2aa4af41ffa7bd5))
+* **typping:** fix type declaration ([c8fb998](https://github.com/belo-app/yggdrasil/commit/c8fb998adf6d8881104e519bd5a98b69fdadf262))
+
 ## [0.7.0](https://github.com/belo-app/yggdrasil/compare/0.6.0...0.7.0) (2023-03-13)
 
 

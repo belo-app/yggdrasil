@@ -37,10 +37,5 @@
     "declarationDir": "@types/yggdrassil",
     "outDir": "./dist"
   },
-  "ts-node": {
-    "transpileOnly": true,
-    "require": ["tsconfig-paths/register"],
-    "swc": true
-  },
-  "include": ["src/**/*"]
+  "include": ["src"]
 }

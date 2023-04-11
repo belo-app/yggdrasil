@@ -23,12 +23,14 @@ export class RedisClient {
     return this.client;
   }
 
-  public async set(key: string, data: string, ttl?: number) {
+  public async set(key: string, data: string, ttl?: number, keepTtl = false) {
     const instance = await this.instance();
 
-    const options = {};
+    const options = {
+      KEEPTTL: keepTtl,
+    };
 
-    if (typeof ttl === "number" && !Number.isNaN(ttl)) {
+    if (typeof ttl === "number" && !Number.isNaN(ttl) && !keepTtl) {
       options["PX"] = ttl;
     }
 

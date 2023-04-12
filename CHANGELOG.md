@@ -1,5 +1,18 @@
 
 
+## [0.8.0](https://github.com/belo-app/yggdrasil/compare/0.7.1...0.8.0) (2023-04-12)
+
+
+### Features
+
+* **redis client:** add keepTtl param on redis client ([c38a66b](https://github.com/belo-app/yggdrasil/commit/c38a66b48dc3bda2d7a4640f22deb2ff7f57dc32))
+* **redis client:** add redis types ([64f774f](https://github.com/belo-app/yggdrasil/commit/64f774fe84e41ef8895d0010e1327c02fe89e177))
+
+
+### Bug Fixes
+
+* **types:** fix build types ([c55550c](https://github.com/belo-app/yggdrasil/commit/c55550c2878093e9a587c975abc9a02a0f0f0dce))
+
 ## [0.7.1](https://github.com/belo-app/yggdrasil/compare/0.7.0...0.7.1) (2023-03-20)
 
 

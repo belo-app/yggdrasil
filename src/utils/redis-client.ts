@@ -1,8 +1,8 @@
 import * as redis from "redis";
 
-interface RedisOptions {
-  PX?: number;
-  KEEPTTL?: boolean;
+export interface RedisOptions {
+  ttl?: number;
+  keepTtl?: boolean;
 }
 
 export class RedisClient {
@@ -31,14 +31,14 @@ export class RedisClient {
   public async set(key: string, data: string, options: RedisOptions = {}) {
     const instance = await this.instance();
 
-    const { PX, KEEPTTL } = options;
+    const { ttl, keepTtl } = options;
 
     const newOptions = {
-      KEEPTTL,
+      KEEPTTL: keepTtl,
     };
 
-    if (typeof PX === "number" && !Number.isNaN(PX) && !KEEPTTL) {
-      newOptions["PX"] = PX;
+    if (typeof ttl === "number" && !Number.isNaN(ttl) && !keepTtl) {
+      newOptions["PX"] = ttl;
     }
 
     try {

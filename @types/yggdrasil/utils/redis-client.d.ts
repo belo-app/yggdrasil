@@ -1,6 +1,6 @@
-interface RedisOptions {
-    PX?: number;
-    KEEPTTL?: boolean;
+export interface RedisOptions {
+    ttl?: number;
+    keepTtl?: boolean;
 }
 export declare class RedisClient {
     private url;
@@ -13,5 +13,4 @@ export declare class RedisClient {
     delete(key: string | string[]): Promise<void>;
     decrementUntil(key: string, value?: number): Promise<any>;
 }
-export {};
 //# sourceMappingURL=redis-client.d.ts.map

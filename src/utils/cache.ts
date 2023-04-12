@@ -17,11 +17,9 @@ export class Cache<Value = any> implements CacheStorage<string, Value> {
     try {
       const cacheKey = this.getKey(key);
 
-      return await this.client.set(
-        cacheKey,
-        JSON.stringify(value),
-        options?.maxAge
-      );
+      return await this.client.set(cacheKey, JSON.stringify(value), {
+        ttl: options?.maxAge,
+      });
     } catch {
       //
     }

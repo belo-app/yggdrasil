@@ -1,5 +1,10 @@
 import * as redis from "redis";
 
+export interface RedisOptions {
+  ttl?: number;
+  keepTtl?: boolean;
+}
+
 export class RedisClient {
   private url: string;
   private client: any;
@@ -23,17 +28,21 @@ export class RedisClient {
     return this.client;
   }
 
-  public async set(key: string, data: string, ttl?: number) {
+  public async set(key: string, data: string, options: RedisOptions = {}) {
     const instance = await this.instance();
 
-    const options = {};
+    const { ttl, keepTtl } = options;
 
-    if (typeof ttl === "number" && !Number.isNaN(ttl)) {
-      options["PX"] = ttl;
+    const newOptions = {
+      KEEPTTL: keepTtl,
+    };
+
+    if (typeof ttl === "number" && !Number.isNaN(ttl) && !keepTtl) {
+      newOptions["PX"] = ttl;
     }
 
     try {
-      return instance.set(key, data, options);
+      return instance.set(key, data, newOptions);
     } catch {
       return false;
     }

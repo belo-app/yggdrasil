@@ -1,50 +1,48 @@
-import AWS from "aws-sdk";
-import https from "https";
-import { Stream } from "stream";
+import {
+  CompleteMultipartUploadOutput,
+  GetObjectCommand,
+  PutObjectCommandInput,
+  S3,
+  S3ClientConfig,
+} from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { Readable, Stream } from "stream";
 
 import { logger } from "./logger";
 
 export class S3Bucket {
-  private client = new AWS.S3({
-    apiVersion: "2006-03-01",
-    httpOptions: {
-      agent: new https.Agent({
-        keepAlive: true,
-        maxSockets: 1024,
-      }),
-    },
-  });
+  public client!: S3;
 
-  constructor(private bucket: string) {}
+  constructor(private bucket: string, options: S3ClientConfig) {
+    this.client = new S3(options);
+  }
 
   public async getStreamFile(Key: string): Promise<Stream> {
-    return this.client
-      .getObject({
-        Bucket: this.bucket,
-        Key,
-      })
-      .createReadStream();
+    const result = await this.client.getObject({
+      Bucket: this.bucket,
+      Key,
+    });
+    return result.Body as Readable;
   }
 
   public async getJsonFile(key: string): Promise<any> {
-    const data = await this.client
-      .getObject({
-        Bucket: this.bucket,
-        Key: key,
-      })
-      .promise();
+    const result = await this.client.getObject({
+      Bucket: this.bucket,
+      Key: key,
+    });
 
-    return JSON.parse(data.Body?.toString() ?? "{}");
+    const data = await result?.Body?.transformToString();
+
+    return JSON.parse(data ?? "{}");
   }
 
   public async exists(key: string): Promise<any> {
     try {
-      await this.client
-        .getObject({
-          Bucket: this.bucket,
-          Key: key,
-        })
-        .promise();
+      await this.client.getObject({
+        Bucket: this.bucket,
+        Key: key,
+      });
 
       return true;
     } catch {
@@ -56,56 +54,60 @@ export class S3Bucket {
     file: Stream | Buffer,
     filename: string,
     folder?: string,
-    options?: Partial<AWS.S3.PutObjectRequest>
+    options?: Partial<PutObjectCommandInput>
   ): Promise<string> {
-    const Key = folder ? `${folder}/${filename}` : filename;
     return new Promise((resolve, reject) => {
-      this.client.upload(
-        {
-          Bucket: this.bucket,
-          Key,
-          Body: file,
-          ...options,
-        },
-        (error, data) => {
-          if (error) {
-            return reject(error);
-          }
-          resolve(data.Location);
-        }
-      );
+      const Key = folder ? `${folder}/${filename}` : filename;
+      const uploadData = new Upload({
+        client: this.client,
+        queueSize: 4,
+        leavePartsOnError: false,
+        params: { Bucket: this.bucket, Key, Body: file, ...options },
+      });
+
+      uploadData
+        .done()
+        .then((data: CompleteMultipartUploadOutput) => {
+          resolve(data?.Location ?? "");
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
   }
 
   public async moveFile(filename: string, to: string) {
     try {
-      await this.client
-        .copyObject({
-          Bucket: this.bucket,
-          CopySource: this.bucket + "/" + filename,
-          Key: to,
-        })
-        .promise();
+      await this.client.copyObject({
+        Bucket: this.bucket,
+        CopySource: this.bucket + "/" + filename,
+        Key: to,
+      });
 
-      await this.client
-        .deleteObject({
-          Bucket: this.bucket,
-          Key: filename,
-        })
-        .promise();
+      await this.client.deleteObject({
+        Bucket: this.bucket,
+        Key: filename,
+      });
     } catch (error) {
       logger.fatal(`Move file S3 error`, { error });
     }
   }
 
-  public getSignedUrl = (key: string) => {
-    return this.client.getSignedUrl("getObject", {
+  public getSignedUrl(key: string) {
+    const command = new GetObjectCommand({
       Bucket: this.bucket,
       Key: key,
     });
-  };
+    return getSignedUrl(this.client, command);
+  }
 
   public deleteFile(key: string, done?: (error, data) => void) {
-    return this.client.deleteObject({ Bucket: this.bucket, Key: key }, done);
+    return (
+      this.client
+        .deleteObject({ Bucket: this.bucket, Key: key })
+        .then((data) => done?.(undefined, data))
+        // eslint-disable-next-line unicorn/no-null
+        .catch((error) => done?.(error, null))
+    );
   }
 }

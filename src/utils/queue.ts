@@ -1,45 +1,70 @@
-import AWS from "aws-sdk";
-import https from "https";
-import { Consumer, ConsumerOptions, SQSMessage } from "sqs-consumer";
+import {
+  DeleteMessageCommand,
+  DeleteMessageCommandInput,
+  SendMessageCommand,
+  SendMessageCommandInput,
+  SQSClient,
+  SQSClientConfig,
+} from "@aws-sdk/client-sqs";
+import { Consumer, ConsumerOptions, Message } from "sqs-consumer-v3";
 
-export const sqs = new AWS.SQS({
-  httpOptions: {
-    agent: new https.Agent({
-      keepAlive: true,
-      maxSockets: 1024,
-    }),
-  },
-});
+export class SqsClient {
+  public client!: SQSClient;
 
-export async function sendMessage(queueURL: string, body: Record<string, any>) {
+  constructor(configuration: SQSClientConfig) {
+    this.client = new SQSClient(configuration);
+  }
+
+  public send(data: SendMessageCommandInput) {
+    const command = new SendMessageCommand(data);
+    return this.client.send(command);
+  }
+
+  public delete(data: DeleteMessageCommandInput) {
+    const command = new DeleteMessageCommand(data);
+    return this.client.send(command);
+  }
+}
+
+export async function sendMessage(
+  sqsClient: SqsClient,
+  queueURL: string,
+  body: Record<string, any>,
+  delaySeconds?: number
+) {
   const parameters = {
     MessageBody: JSON.stringify(body),
     QueueUrl: queueURL,
+    DelaySeconds: delaySeconds,
   };
-
-  return sqs.sendMessage(parameters).promise();
+  return sqsClient.send(parameters);
 }
 
-export function deleteMessage(queueURL: string, receiptHandle: string) {
+export function deleteMessage(
+  sqsClient: SqsClient,
+  queueURL: string,
+  receiptHandle: string
+) {
   const parameters = {
     ReceiptHandle: receiptHandle,
     QueueUrl: queueURL,
   };
 
-  return sqs.deleteMessage(parameters).promise();
+  return sqsClient.delete(parameters);
 }
 
-interface Options<Message = Record<string, any>>
+interface Options<DataMessage = Record<string, any>>
   extends Omit<ConsumerOptions, "handleMessage"> {
-  handleMessage?(message: SQSMessage & { data: Message }): Promise<void>;
+  handleMessage?(message: Message & { data: DataMessage }): Promise<void>;
 }
 
 export function createConsumer<Message>(
+  sqsClient: SQSClient,
   options: Partial<Options<Message>>
 ): Consumer {
   return Consumer.create({
     batchSize: 1,
-    sqs,
+    sqs: sqsClient,
     ...options,
     handleMessage: async (message) => {
       const data = JSON.parse(message.Body ?? "{}") as Message;

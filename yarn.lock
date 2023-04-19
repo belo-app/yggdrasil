@@ -1701,7 +1701,7 @@
     p-limit "^3.1.0"
     readable-stream "^4.0.0"
 
-"@fastify/swagger-ui@^1.0.3":
+"@fastify/swagger-ui@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@fastify/swagger-ui/-/swagger-ui-1.5.0.tgz#6b42bc724a0686b9da9eeab284064113b0cda2f6"
   integrity sha512-wumG3RcYhhRpn0wjPMqOC96WNRVAj2lA4V4yDLqwC/hzwIinXzfuwSma+uAe2DhqoHHirk/dAannupsycrp1PA==

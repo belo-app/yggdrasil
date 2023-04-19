@@ -1,5 +1,12 @@
 
 
+## [0.8.1](https://github.com/belo-app/yggdrasil/compare/0.8.0...0.8.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* **fastify/swagger-ui:** fix fastify/swagger-ui in 1.5.0 ([2e70a3b](https://github.com/belo-app/yggdrasil/commit/2e70a3b85033d2a7871916f6130c14e6ce2ae858))
+
 ## [0.8.0](https://github.com/belo-app/yggdrasil/compare/0.7.1...0.8.0) (2023-04-12)
 
 

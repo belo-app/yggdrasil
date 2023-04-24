@@ -17,6 +17,11 @@
     "build:types": "tsc -d --project tsconfig.types.json"
   },
   "dependencies": {
+    "@aws-sdk/client-lambda": "^3.315.0",
+    "@aws-sdk/client-s3": "^3.315.0",
+    "@aws-sdk/client-sqs": "^3.315.0",
+    "@aws-sdk/lib-storage": "^3.315.0",
+    "@aws-sdk/s3-request-presigner": "^3.315.0",
     "@fastify/cors": "^8.1.0",
     "@fastify/formbody": "^7.3.0",
     "@fastify/helmet": "^10.0.1",
@@ -36,7 +41,6 @@
     "@sinclair/typebox": "^0.25.16",
     "@typegoose/typegoose": "^9.12.1",
     "argon2": "^0.29.1",
-    "aws-sdk": "^2.1231.0",
     "axios": "^0.27.2",
     "bip32": "^2.0.6",
     "bip39": "^3.0.4",
@@ -74,6 +78,7 @@
     "redis": "^4.3.1",
     "redlock": "^5.0.0-beta.2",
     "sqs-consumer": "^5.7.0",
+    "sqs-consumer-v3": "^1.0.0",
     "ssh2-sftp-client": "^9.0.4",
     "superstruct": "^0.16.5"
   },

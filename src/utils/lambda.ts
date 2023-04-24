@@ -1,26 +1,26 @@
-import AWS from "aws-sdk";
-import { InvocationRequest } from "aws-sdk/clients/lambda";
-import https from "https";
+import {
+  InvokeCommandInput,
+  Lambda,
+  LambdaClientConfig,
+} from "@aws-sdk/client-lambda";
 
-const lambda = new AWS.Lambda({
-  apiVersion: "2015-03-31",
-  httpOptions: {
-    agent: new https.Agent({
-      keepAlive: true,
-      maxSockets: 1024,
-    }),
-  },
-});
+export class LambaClient {
+  public client!: Lambda;
 
-export const invoke = (parameters: InvocationRequest) => {
+  constructor(configuration: LambdaClientConfig) {
+    this.client = new Lambda(configuration);
+  }
+}
+
+export const invoke = (lamdaClient: Lambda, parameters: InvokeCommandInput) => {
   return new Promise((resolve, reject) => {
-    lambda.invoke(parameters, function (error, data) {
+    lamdaClient.invoke(parameters, function (error, data) {
       if (error) {
         return reject(error);
       }
       try {
-        const result = JSON.parse(data?.Payload as string);
-        resolve(result);
+        const result = Buffer.from(data?.Payload ?? "").toString();
+        resolve(JSON.parse(result));
       } catch {
         resolve(data?.Payload);
       }

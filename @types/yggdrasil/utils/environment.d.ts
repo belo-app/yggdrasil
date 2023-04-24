@@ -3,6 +3,7 @@ export declare const environment: {
     LOCAL: boolean;
     TEST: boolean;
     GIT_SHA: string;
+    AWS_REGION: string;
 };
 export declare function extendSharedEnvironment<T>(packageEnvironment: T): typeof environment & T;
 //# sourceMappingURL=environment.d.ts.map

@@ -1,3 +1,7 @@
-import { InvocationRequest } from "aws-sdk/clients/lambda";
-export declare const invoke: (parameters: InvocationRequest) => Promise<unknown>;
+import { InvokeCommandInput, Lambda, LambdaClientConfig } from "@aws-sdk/client-lambda";
+export declare class LambaClient {
+    client: Lambda;
+    constructor(configuration: LambdaClientConfig);
+}
+export declare const invoke: (lamdaClient: Lambda, parameters: InvokeCommandInput) => Promise<unknown>;
 //# sourceMappingURL=lambda.d.ts.map

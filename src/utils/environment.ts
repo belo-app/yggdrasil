@@ -6,6 +6,7 @@ export const environment = {
   LOCAL: false,
   TEST: false,
   GIT_SHA: getEnvironment("GIT_SHA"),
+  AWS_REGION: getEnvironment("AWS_REGION"),
 };
 
 environment.LOCAL = !environment.GIT_SHA;

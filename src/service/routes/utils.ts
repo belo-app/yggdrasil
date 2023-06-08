@@ -5,7 +5,7 @@ import { File, StorageEngine } from "fastify-multer/lib/interfaces";
 import openAPISnippet from "openapi-snippet";
 import { Stream } from "stream";
 
-import { getFileExtension, S3Bucket, uuid } from "../../utils";
+import { environment, getFileExtension, S3Bucket, uuid } from "../../utils";
 import { AppPluginCallback } from "../types";
 
 export interface Controller {
@@ -164,7 +164,9 @@ export class MulterS3Storage implements StorageEngine {
     getKey?: (file: File) => string;
     acl: string;
   }) {
-    this.client = new S3Bucket(options.bucket);
+    this.client = new S3Bucket(options.bucket, {
+      region: environment.AWS_REGION,
+    });
     this.getKey = options.getKey;
   }
 

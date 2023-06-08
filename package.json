@@ -22,6 +22,7 @@
     "@aws-sdk/client-sqs": "^3.315.0",
     "@aws-sdk/lib-storage": "^3.315.0",
     "@aws-sdk/s3-request-presigner": "^3.315.0",
+    "@ethersproject/shims": "^5.7.0",
     "@fastify/cors": "^8.1.0",
     "@fastify/formbody": "^7.3.0",
     "@fastify/helmet": "^10.0.1",

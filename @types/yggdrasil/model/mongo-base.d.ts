@@ -1,3 +1,4 @@
+/// <reference types="mongoose/types/types" />
 import { defaultClasses } from "@typegoose/typegoose";
 import { Types } from "mongoose";
 export declare class MongoBase extends defaultClasses.TimeStamps implements defaultClasses.Base {

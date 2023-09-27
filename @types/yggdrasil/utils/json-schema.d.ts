@@ -1,4 +1,4 @@
-import { TEnum, TOptional, TSchema, TypeBuilder } from "@sinclair/typebox";
+import { TEnum, TOptional, TSchema, JavaScriptTypeBuilder as TypeBuilder } from "@sinclair/typebox";
 declare const DateKind: unique symbol;
 interface TDate extends TSchema {
     type: "string";

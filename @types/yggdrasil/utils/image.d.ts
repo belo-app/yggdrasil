@@ -4,11 +4,11 @@
 import { Readable } from "stream";
 import * as s from "superstruct";
 export declare const multerFileSchema: s.Struct<{
+    buffer: Buffer;
     fieldname: string;
     originalname: string;
     encoding: string;
     mimetype: string;
-    buffer: Buffer;
     size: number;
 }, {
     fieldname: s.Struct<string, null>;

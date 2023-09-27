@@ -1,5 +1,7 @@
-import * as bip32 from "bip32";
+import BIP32Factory from "bip32";
 import * as bip39 from "bip39";
+import * as ecc from 'tiny-secp256k1';
+import { ECPairFactory } from "ecpair";
 import * as bitcoin from "bitcoinjs-lib";
 
 import { BlockchainAddressType, BlockchainService } from "./generic";
@@ -7,6 +9,8 @@ import { BlockchainAddressType, BlockchainService } from "./generic";
 export class BitcoinService extends BlockchainService {
   public async getUserAddresses(userId: string) {
     const seed = await bip39.mnemonicToSeed(this.seedPhrase);
+    const bip32 = BIP32Factory(ecc);
+
     const root = bip32.fromSeed(seed);
 
     // BIP 49 - For 3-addresses   - m/49'/0'/0'/0/0
@@ -52,7 +56,8 @@ export class BitcoinService extends BlockchainService {
   }
 
   public getRandomAddress(type?: BlockchainAddressType) {
-    const { publicKey } = bitcoin.ECPair.makeRandom();
+    const ECPair = ECPairFactory(ecc);
+    const { publicKey } = ECPair.makeRandom();
 
     if (!type) {
       return;

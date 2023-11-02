@@ -1,3 +1,4 @@
+import "@ethersproject/shims";
 import { ethers } from "ethers";
 import { BlockchainAddressType, BlockchainService } from "./generic";
 export declare class EthereumService extends BlockchainService {

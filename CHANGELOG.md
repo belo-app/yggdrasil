@@ -1,5 +1,12 @@
 
 
+## [0.9.1](https://github.com/belo-app/yggdrasil/compare/0.9.0...0.9.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* **type-check:** fix typecheck. and some dependecies ([b7080f7](https://github.com/belo-app/yggdrasil/commit/b7080f7835c3714a61b2a9a40a3ab9e8b413cdd7))
+
 ## [0.9.0](https://github.com/belo-app/yggdrasil/compare/0.8.2...0.9.0) (2023-06-08)
 
 

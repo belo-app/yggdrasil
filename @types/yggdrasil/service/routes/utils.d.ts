@@ -29,11 +29,11 @@ export declare class MulterS3Storage implements StorageEngine {
     private getKey?;
     constructor(options: {
         bucket: string;
-        getKey?: (file: File) => string;
-        acl: string;
+        getKey?: (request: FastifyRequest, file: File) => string;
+        acl?: string;
     });
     private getDefaultKey;
-    _handleFile: (_request: FastifyRequest, file: File, done: (error?: Error | null, info?: any) => void) => void;
+    _handleFile: (request: FastifyRequest, file: File, done: (error?: Error | null, info?: any) => void) => void;
     _removeFile: (_request: FastifyRequest, file: S3File, done: (error?: Error | null, info?: Partial<S3File>) => void) => void;
 }
 export {};

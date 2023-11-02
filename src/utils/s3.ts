@@ -62,7 +62,7 @@ export class S3Bucket {
         client: this.client,
         queueSize: 4,
         leavePartsOnError: false,
-        params: { Bucket: this.bucket, Key, Body: file, ...options },
+        params: { Bucket: this.bucket, Key, Body: file as any, ...options },
       });
 
       uploadData

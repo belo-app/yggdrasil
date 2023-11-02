@@ -3,7 +3,6 @@ import swaggerUi from "@fastify/swagger-ui";
 import { FastifyRequest } from "fastify";
 import { File, StorageEngine } from "fastify-multer/lib/interfaces";
 import openAPISnippet from "openapi-snippet";
-import { Stream } from "stream";
 
 import { environment, getFileExtension, S3Bucket, uuid } from "../../utils";
 import { AppPluginCallback } from "../types";
@@ -157,12 +156,12 @@ type S3File = File & { key: string; url: string };
 export class MulterS3Storage implements StorageEngine {
   private client: S3Bucket;
   private acl?: string;
-  private getKey?: (file: File) => string;
+  private getKey?: (request: FastifyRequest, file: File) => string;
 
   constructor(options: {
     bucket: string;
-    getKey?: (file: File) => string;
-    acl: string;
+    getKey?: (request: FastifyRequest, file: File) => string;
+    acl?: string;
   }) {
     this.client = new S3Bucket(options.bucket, {
       region: environment.AWS_REGION,
@@ -176,7 +175,7 @@ export class MulterS3Storage implements StorageEngine {
   };
 
   _handleFile = (
-    _request: FastifyRequest,
+    request: FastifyRequest,
     file: File,
     done: (error?: Error | null, info?: any) => void
   ) => {
@@ -184,12 +183,12 @@ export class MulterS3Storage implements StorageEngine {
       done(new Error(`Invalid file ${file.originalname}`));
     }
 
-    const key = this.getKey?.(file) ?? this.getDefaultKey(file);
+    const key = this.getKey?.(request, file) ?? this.getDefaultKey(file);
 
     this.client
-      .uploadFile(file.stream as Stream, key, undefined, {
+      .uploadFile(file.stream as any, key, undefined, {
         ContentType: file.mimetype,
-        ACL: this.acl,
+        ACL: this.acl as any,
       })
       .then((url: string) => {
         done(undefined, { url, key });

@@ -1,6 +1,6 @@
 import memoizee from "memoizee";
 
-interface Constructor<T = any> extends Function {
+interface Constructor<T = any> {
   new (...arguments_: any[]): T;
 }
 

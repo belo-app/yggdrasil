@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "src/index.ts",
   "types": "@types/yggdrasil/index.d.ts",
+  "type": "module",
   "scripts": {
     "commit": "commit",
     "release": "release-it",

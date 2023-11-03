@@ -1,5 +1,5 @@
 import memoizee from "memoizee";
-interface Constructor<T = any> {
+interface Constructor<T = any> extends Function {
     new (...arguments_: any[]): T;
 }
 type ProviderMap<EnumType, ProviderType> = {

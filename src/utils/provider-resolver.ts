@@ -1,6 +1,7 @@
 import memoizee from "memoizee";
 
-interface Constructor<T = any> {
+// eslint-disable-next-line @typescript-eslint/ban-types
+interface Constructor<T = any> extends Function {
   new (...arguments_: any[]): T;
 }
 
@@ -13,14 +14,14 @@ type ProviderMap<EnumType, ProviderType> = {
 export class ProviderResolver<
   EnumType extends Record<string, string | number>,
   ProviderType,
-  ImplementationType extends ProviderType = ProviderType
+  ImplementationType extends ProviderType = ProviderType,
 > {
   constructor(
     private base: Constructor<ProviderType>,
     private providerClassMap: () => ProviderMap<
       EnumType,
       Constructor<ImplementationType>
-    >
+    >,
   ) {}
 
   public resolveByType(type: keyof EnumType | "default") {
@@ -48,6 +49,6 @@ export class ProviderResolver<
       instances.default = defaultInstance as ImplementationType;
 
       return instances;
-    }
+    },
   );
 }

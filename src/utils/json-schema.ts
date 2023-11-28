@@ -1,10 +1,10 @@
 import {
-  JavaScriptTypeBuilder as TypeBuilder,
   Kind,
-  Optional,
+  Modifier,
   TEnum,
   TOptional,
   TSchema,
+  TypeBuilder,
 } from "@sinclair/typebox";
 
 const DateKind = Symbol("DateKind");
@@ -24,7 +24,7 @@ class BeloTypeBuilder extends TypeBuilder {
     if (item?.[Kind] == "Union") {
       return item as any;
     }
-    return { ...item, [Optional]: "Optional", nullable: true } as any;
+    return { ...item, [Modifier]: "Optional", nullable: true } as any;
   }
 
   public Enum<T extends Record<string, string | number>>(item: T): TEnum<T> {

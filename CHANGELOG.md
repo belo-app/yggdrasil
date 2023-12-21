@@ -1,10 +1,15 @@
 
 
+## [0.9.2](https://github.com/belo-app/yggdrasil/compare/0.9.0...0.9.2) (2023-12-20)
 ## [0.9.1](https://github.com/belo-app/yggdrasil/compare/0.9.0...0.9.1) (2023-11-02)
 
 
 ### Bug Fixes
 
+* **errors:** add missing errors ([245224d](https://github.com/belo-app/yggdrasil/commit/245224ded7d93676334758ea097f56e18326f4b4))
+* remove dep ([b9a35d9](https://github.com/belo-app/yggdrasil/commit/b9a35d930ae1dc802cc6f9cf6ee9bbb025c9d127))
+* **type-check:** fix typecheck. and some dependecies ([b7080f7](https://github.com/belo-app/yggdrasil/commit/b7080f7835c3714a61b2a9a40a3ab9e8b413cdd7))
+* **version:** update version ([63d43b7](https://github.com/belo-app/yggdrasil/commit/63d43b7d291a4e80f05d1511fa104bb747a4711f))
 * **type-check:** fix typecheck. and some dependecies ([b7080f7](https://github.com/belo-app/yggdrasil/commit/b7080f7835c3714a61b2a9a40a3ab9e8b413cdd7))
 
 ## [0.9.0](https://github.com/belo-app/yggdrasil/compare/0.8.2...0.9.0) (2023-06-08)

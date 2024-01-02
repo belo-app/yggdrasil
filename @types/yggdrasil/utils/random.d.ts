@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { BinaryToTextEncoding } from "crypto";
 export declare const randomInt: (min?: number, max?: number) => number;
 export declare const generateRandomToken: () => string;
